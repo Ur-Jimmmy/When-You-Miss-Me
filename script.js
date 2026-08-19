@@ -9,6 +9,30 @@ function init(){
   const name=cfg.name||"Jiya";
 
   const set=(id,v)=>{const e=$(id);if(e)e.textContent=v};
+  const pools=cfg.messagePools||{};
+  function pickPool(kind){
+    const a=pools[kind]||pools.generic||[];
+    return a.length?a[Math.floor(Math.random()*a.length)]:"";
+  }
+  function letterKind(title){
+    const t=String(title).toLowerCase();
+    if(/miss/.test(t))return "miss";
+    if(/sad|alone|peace/.test(t))return "sad";
+    if(/hug/.test(t))return "hug";
+    if(/sleep|sleeping|midnight/.test(t))return /midnight/.test(t)?"midnight":"sleep";
+    if(/overthink|thought/.test(t))return "overthink";
+    if(/reassur|choose you/.test(t))return "reassurance";
+    if(/happy|proud/.test(t))return "happy";
+    if(/smile/.test(t))return "smile";
+    if(/love/.test(t))return "love";
+    if(/rain/.test(t))return "rain";
+    if(/bad day|bad/.test(t))return "bad";
+    if(/courage|motivation/.test(t))return "courage";
+    if(/insecure|special|worthy/.test(t))return "insecure";
+    if(/future|adventure/.test(t))return "future";
+    return "generic";
+  }
+
   set("heroName",name); set("footerName",name);
 
   // Letters
@@ -20,7 +44,11 @@ function init(){
   let current=-1;
   function openLetter(i){
     if(!letters[i])return;
-    current=i; set("modalTitle",letters[i][0]);set("modalText",letters[i][1]);$("modal").classList.add("show");
+    current=i;
+    set("modalTitle",letters[i][0]);
+    const extra=pickPool(letterKind(letters[i][0]));
+    set("modalText",extra||letters[i][1]);
+    $("modal").classList.add("show");
   }
   function randomLetter(){
     if(!letters.length)return;
@@ -40,11 +68,11 @@ function init(){
     memories.forEach((m,i)=>{
       const b=document.createElement("button");b.className="memory-star";b.textContent="✦";b.type="button";
       b.style.left=m[2]+"%";b.style.top=m[3]+"%";b.style.animationDelay=(i*.12)+"s";
-      b.onclick=()=>{set("modalTitle",m[0]);set("modalText",m[1]);$("modal").classList.add("show")};constellation.appendChild(b);
+      b.onclick=()=>{set("modalTitle",m[0]);set("modalText",pickPool(letterKind(m[0]))||m[1]);$("modal").classList.add("show")};constellation.appendChild(b);
     });
     for(let i=0;i<100;i++){const s=document.createElement("span");s.className="tiny-star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";s.style.animationDelay=Math.random()*3+"s";constellation.appendChild(s)}
   }
-  $("allMemories")?.addEventListener("click",()=>{const m=memories[Math.floor(Math.random()*memories.length)];if(m){set("modalTitle",m[0]);set("modalText",m[1]);$("modal").classList.add("show")}});
+  $("allMemories")?.addEventListener("click",()=>{const m=memories[Math.floor(Math.random()*memories.length)];if(m){set("modalTitle",m[0]);set("modalText",pickPool(letterKind(m[0]))||m[1]);$("modal").classList.add("show")}});
 
   function renderReasons(){
     if(!$("reasonsGrid"))return;
@@ -60,8 +88,15 @@ function init(){
   countdown();setInterval(countdown,1000);
 
   // Extras
-  const extra={hug:["Emergency Hug","🫂 This hug is from Jimmy to Jiya. Hold it until we meet."],bad:["Bad Day Mode","Breathe, Jiya. One difficult day cannot define your whole story."],morning:["Good Morning","Good morning, Jiya. I hope today gives you a hundred tiny reasons to smile."],night:["Good Night","Goodnight, Jiya. Sleep peacefully. Jimmy is sending one last hug. 🌙"],reminder:["Daily Reminder","Jiya, you are loved. You matter. And you are never forgotten."],voice:["Voice Note","Imagine Jimmy saying softly: Hey Jiya, I'm here. I love you."],compliment:["Compliment Jar","Jiya, you're ridiculously special. That is today's official compliment. 💗"],quiz:["Love Quiz","Question: Who is Jimmy's favorite girl? Answer: Jiya. Obviously. 😌"]};
-  document.querySelectorAll("[data-extra]").forEach(b=>b.onclick=()=>{const x=extra[b.dataset.extra];if(x){set("modalTitle",x[0]);set("modalText",x[1]);$("modal").classList.add("show")}});
+  const extra={
+    hug:["Emergency Hug","hug"], bad:["Bad Day Mode","bad"], morning:["Good Morning","happy"],
+    night:["Good Night","sleep"], reminder:["Daily Reminder","reassurance"],
+    voice:["Voice Note","miss"], compliment:["Compliment Jar","smile"], quiz:["Love Quiz","love"]
+  };
+  document.querySelectorAll("[data-extra]").forEach(b=>b.onclick=()=>{
+    const x=extra[b.dataset.extra];
+    if(x){set("modalTitle",x[0]);set("modalText",pickPool(x[1]));$("modal").classList.add("show")}
+  });
   $("hugSide")?.addEventListener("click",()=>document.querySelector('[data-extra="hug"]')?.click());
 
   $("unlockBtn")?.addEventListener("click",()=>{
@@ -92,7 +127,7 @@ function init(){
   };
   document.querySelectorAll("[data-hidden]").forEach(b=>b.addEventListener("click",()=>{
     const x=hidden[b.dataset.hidden]; if(!x)return;
-    set("modalTitle",x[0]);set("modalText",x[1]);$("modal").classList.add("show");
+    set("modalTitle",x[0]);set("modalText",x[1]+"\n\n"+pickPool("generic"));$("modal").classList.add("show");
   }));
   let wishCount=0;
   $("secretMoon")?.addEventListener("click",()=>{

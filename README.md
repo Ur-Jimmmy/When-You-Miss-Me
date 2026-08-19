@@ -9,3 +9,6 @@ Also added `style.css?v=9` cache-busting.
 Password: `love`
 
 Replace **index.html** and **style.css** in GitHub. Keep `script.js`, `config.js`, and `assets/` from the previous version.
+
+### V10-style message variety
+Message cards now randomly choose from larger matching pools for moods like missing, sad, hugs, sleep, overthinking, reassurance, happy, rain, bad days, courage, insecurity, future, and midnight. Every opening can show a different note.
