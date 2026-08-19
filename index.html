@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070914">
+<title>When You Miss Me ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+<div class="moon" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">for <span>you</span> ♡</div>
+  <button class="musicBtn" id="musicBtn" aria-label="Toggle music">♫</button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="eyebrow">A little place that belongs to us</div>
+  <h1>If you're here…<br><em>you must miss me.</em></h1>
+  <p>So stay for a while. I left little pieces of my heart here for you.</p>
+  <button class="primary" id="missBtn">♡ Tap when you miss me</button>
+  <div class="scrollHint">scroll slowly ↓</div>
+</section>
+
+<section class="hug-card">
+  <div class="section-kicker">01 · emergency department</div>
+  <h2>Need a hug?</h2>
+  <p>Distance is annoying. This button isn't.</p>
+  <button class="hug" id="hugBtn">🫂 Send me a hug</button>
+  <div id="hugResult" class="result"></div>
+</section>
+
+<section class="letters">
+  <div class="section-kicker">02 · from my heart</div>
+  <h2>A letter for you</h2>
+  <div class="letter">
+    <div class="seal">♡</div>
+    <p id="letterText">I don't know what moment made you open this page, but I hope it reminds you of one thing: no amount of distance can make you less important to me.</p>
+    <button class="ghost" id="letterBtn">Open another letter</button>
+  </div>
+</section>
+
+<section class="reasons">
+  <div class="section-kicker">03 · little things</div>
+  <h2>One more reason<br><em>I love you.</em></h2>
+  <div class="reasonBox">
+    <div class="reasonNo" id="reasonNo">01</div>
+    <div class="reason" id="reason">Because somehow, you can make an ordinary day feel like something worth remembering.</div>
+    <button class="ghost" id="reasonBtn">Give me another ♡</button>
+  </div>
+</section>
+
+<section class="memories">
+  <div class="section-kicker">04 · our universe</div>
+  <h2>Our little constellation</h2>
+  <p>Every star can become a memory. Replace these with your own moments.</p>
+  <div class="sky" id="sky">
+    <button class="star s1" data-memory="The day I first realized how special you were.">✦</button>
+    <button class="star s2" data-memory="That silly moment we still laugh about.">✦</button>
+    <button class="star s3" data-memory="A day I wish I could replay with you.">✦</button>
+    <button class="star s4" data-memory="One of my favorite memories is simply being beside you.">✦</button>
+    <button class="star s5" data-memory="This star is waiting for our next adventure.">✦</button>
+    <div class="constellation-line l1"></div><div class="constellation-line l2"></div>
+  </div>
+  <div class="memoryPopup" id="memoryPopup"></div>
+</section>
+
+<section class="badday">
+  <div class="section-kicker">05 · for difficult days</div>
+  <h2>Having a bad day?</h2>
+  <p>You don't have to be okay every minute.</p>
+  <button class="primary" id="badBtn">Stay here with me</button>
+</section>
+
+<section class="countdown">
+  <div class="section-kicker">06 · until we meet again</div>
+  <h2>Every second is<br><em>one second closer.</em></h2>
+  <div class="timer">
+    <div><strong id="days">--</strong><span>days</span></div>
+    <div><strong id="hours">--</strong><span>hours</span></div>
+    <div><strong id="mins">--</strong><span>minutes</span></div>
+    <div><strong id="secs">--</strong><span>seconds</span></div>
+  </div>
+  <p class="small">Change the date in <code>script.js</code> to your next meeting.</p>
+</section>
+
+<section class="secret">
+  <div class="section-kicker">07 · you weren't supposed to find this</div>
+  <h2>There's a secret.</h2>
+  <p>Maybe it's hidden behind a word only we know.</p>
+  <div class="secretForm">
+    <input id="secretInput" type="password" placeholder="Our secret word…">
+    <button class="primary" id="secretBtn">Unlock</button>
+  </div>
+  <div id="secretResult" class="result"></div>
+</section>
+
+<section class="final">
+  <div class="finalStars">✦　·　✧　·　✦</div>
+  <h2>If one day<br>you forget how much<br><em>you mean to me…</em></h2>
+  <button class="ghost" id="finalBtn">Remind me</button>
+  <div id="finalMessage" class="finalMessage"></div>
+</section>
+</main>
+
+<footer>
+  Made with too much love ♡<br>
+  <span>Replace the sample content with your own memories.</span>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modalInner">
+    <button class="close" id="closeModal">×</button>
+    <div class="modalHeart">♡</div>
+    <h2 id="modalTitle">For you</h2>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
