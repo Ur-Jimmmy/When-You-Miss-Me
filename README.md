@@ -1,41 +1,35 @@
-# When You Miss Me — Version 2 ❤️
+# When You Miss Me — V2.1 FIXED ❤️
 
-A cinematic, mobile-first romantic website for GitHub Pages.
+This build fixes the mobile opening-screen/layout problem from V2.
 
-## Files
+## Upload these files
 
-- `index.html` — website structure
-- `style.css` — design and animations
-- `script.js` — interactions
-- `config.js` — **the only file you need to personalize**
-- `assets/` — put your song/photos here
+- index.html
+- style.css
+- script.js
+- config.js
+- assets/
 
-## Personalize
+## Important
 
-Open `config.js` and change:
+Keep `config.js` in the SAME folder as `index.html`.
 
-- `name`
-- `introLine`
-- `nextMeeting`
-- `secretWord`
-- `finalMessage`
-- `reasons`
-- `letters`
-- `timeline`
-- `memories`
-
-## Add your song
-
-Put your MP3 in:
-
-`assets/our-song.mp3`
-
-The Music button will play it.
+The site does not depend on music. If you do not add `assets/our-song.mp3`, everything else still works.
 
 ## GitHub Pages
 
-Create a repository, upload all files/folders, then:
+Repository → Settings → Pages → Deploy from a branch → main → / (root) → Save.
 
-**Settings → Pages → Deploy from a branch → main → / (root) → Save**
+Then open the generated Pages address on your phone.
 
-Your site will then get a GitHub Pages address.
+## Personalize
+
+Edit `config.js` for:
+- name
+- meeting date
+- secret word
+- letters
+- reasons
+- timeline
+- memories
+- final message

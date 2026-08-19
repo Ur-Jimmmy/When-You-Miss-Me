@@ -10,87 +10,89 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="stars"></div>
-<div class="noise"></div>
+<div id="starfield" aria-hidden="true"></div>
 
+<!-- Opening screen -->
 <div id="intro" class="intro">
-  <div class="introStars">✦　·　✧　·　✦</div>
-  <p class="tiny">A little universe made for</p>
-  <h1 id="introName">My Love</h1>
-  <p id="introLine">Because sometimes distance needs a little help.</p>
-  <button class="btn" id="enterBtn">Enter my world ♡</button>
+  <div class="intro-content">
+    <div class="intro-stars">✦　·　✧　·　✦</div>
+    <div class="eyebrow">A little universe made for</div>
+    <h1 id="introName">My Love</h1>
+    <p id="introLine">Because sometimes distance needs a little help.</p>
+    <button class="btn" id="enterBtn" type="button">Enter my world ♡</button>
+  </div>
 </div>
 
-<header class="nav">
+<header class="nav" id="nav">
   <a href="#home" class="logo">♡ <span id="navName">you</span></a>
-  <button id="musicBtn" class="round">♫</button>
+  <button class="round" id="musicBtn" type="button" aria-label="Music">♫</button>
 </header>
 
-<main id="site" class="hidden">
+<main id="site" class="site" aria-hidden="true">
 <section id="home" class="hero">
   <div class="eyebrow">01 · whenever you miss me</div>
   <h2>Hey, <span id="heroName">love</span>…<br><em>come a little closer.</em></h2>
   <p>I made this tiny universe so that whenever you miss me, you can find a little piece of me here.</p>
-  <button class="btn" id="missBtn">♡ I miss you</button>
+  <button class="btn" id="missBtn" type="button">♡ I miss you</button>
   <div class="hint">scroll slowly ↓</div>
 </section>
 
-<section class="hug sectionCenter">
+<section class="section section-center">
   <div class="eyebrow">02 · emergency hug</div>
   <h2>No matter the distance,<br><em>this one is free.</em></h2>
-  <button class="hugBtn" id="hugBtn">🫂 SEND HUG</button>
+  <button class="hug-btn" id="hugBtn" type="button">🫂 SEND HUG</button>
   <p id="hugText" class="soft"></p>
 </section>
 
-<section id="story">
+<section class="section">
   <div class="eyebrow">03 · our story</div>
   <h2>A story I'd<br><em>choose again.</em></h2>
   <div class="timeline" id="timeline"></div>
 </section>
 
-<section id="letters">
+<section class="section">
   <div class="eyebrow">04 · open one</div>
   <h2>Letters I couldn't<br><em>fit into one message.</em></h2>
   <div class="envelopes" id="envelopes"></div>
 </section>
 
-<section id="reasons">
+<section class="section">
   <div class="eyebrow">05 · little things</div>
   <h2>Why I love<br><em>you.</em></h2>
-  <div class="reasonCard">
+  <div class="reason-card">
     <span id="reasonNumber">01</span>
     <p id="reasonText"></p>
-    <button class="ghost" id="reasonBtn">Another reason ♡</button>
+    <button class="ghost" id="reasonBtn" type="button">Another reason ♡</button>
   </div>
 </section>
 
-<section id="memories">
+<section class="section">
   <div class="eyebrow">06 · our universe</div>
   <h2>Tap a star.<br><em>Find a memory.</em></h2>
   <div class="constellation" id="constellation"></div>
-  <p id="memoryText" class="memoryText">The stars are waiting…</p>
+  <p id="memoryText" class="memory-text">The stars are waiting…</p>
 </section>
 
-<section id="music" class="musicSection sectionCenter">
+<section class="section section-center">
   <div class="eyebrow">07 · our little radio</div>
   <h2>A song that<br><em>sounds like us.</em></h2>
   <div class="player">
     <div class="disc">♡</div>
-    <div>
-      <strong id="songTitle">Our Song</strong>
-      <small id="songCaption">Put your song in assets/our-song.mp3</small>
+    <div class="track">
+      <strong>Our Song</strong>
+      <small id="songCaption">Add assets/our-song.mp3</small>
     </div>
-    <button class="round" id="playBtn">▶</button>
+    <button class="round" id="playBtn" type="button">▶</button>
   </div>
 </section>
 
-<section class="badDay sectionCenter">
+<section class="section section-center">
   <div class="eyebrow">08 · for difficult days</div>
   <h2>If today is heavy,<br><em>stay here for a minute.</em></h2>
-  <button class="btn" id="comfortBtn">Stay with me ♡</button>
+  <button class="btn" id="comfortBtn" type="button">Stay with me ♡</button>
 </section>
 
-<section id="countdown" class="sectionCenter">
+<section class="section section-center">
   <div class="eyebrow">09 · until we meet again</div>
   <h2>Every second is<br><em>one second closer.</em></h2>
   <div class="timer">
@@ -101,32 +103,32 @@
   </div>
 </section>
 
-<section class="secret sectionCenter">
+<section class="section section-center">
   <div class="eyebrow">10 · classified</div>
   <h2>You found<br><em>the secret door.</em></h2>
   <p class="soft">Only one word opens it.</p>
-  <div class="secretForm">
-    <input id="secretInput" type="password" placeholder="Our secret word">
-    <button class="btn" id="unlockBtn">Unlock</button>
+  <div class="secret-form">
+    <input id="secretInput" type="password" autocomplete="off" placeholder="Our secret word">
+    <button class="btn" id="unlockBtn" type="button">Unlock</button>
   </div>
-  <p id="secretText" class="memoryText"></p>
+  <p id="secretText" class="memory-text"></p>
 </section>
 
-<section class="final sectionCenter">
-  <div class="introStars">✦　·　✧　·　✦</div>
+<section class="section section-center final">
+  <div class="intro-stars">✦　·　✧　·　✦</div>
   <div class="eyebrow">11 · one last thing</div>
   <h2>If you ever forget<br><em>how much you mean to me…</em></h2>
-  <button class="ghost" id="finalBtn">Remind me</button>
-  <p id="finalText" class="finalText"></p>
+  <button class="ghost" id="finalBtn" type="button">Remind me</button>
+  <p id="finalText" class="final-text"></p>
 </section>
 </main>
 
 <footer>Made with love, for <span id="footerName">you</span> ♡</footer>
 
-<div id="modal" class="modal">
-  <div class="modalBox">
-    <button id="closeModal" class="close">×</button>
-    <div class="bigHeart">♡</div>
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button id="closeModal" class="close" type="button">×</button>
+    <div class="big-heart">♡</div>
     <h3 id="modalTitle"></h3>
     <p id="modalText"></p>
   </div>
