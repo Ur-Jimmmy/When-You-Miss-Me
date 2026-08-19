@@ -1,138 +1,123 @@
 (() => {
 "use strict";
+const $=id=>document.getElementById(id);
+const cfg=window.CONFIG||{};
+let currentLetter=-1, audio=null;
 
-const $ = id => document.getElementById(id);
-const cfg = window.CONFIG || {
-  name:"My Love", introLine:"Because sometimes distance needs a little help.",
-  nextMeeting:"2026-12-01T18:00:00", secretWord:"love",
-  finalMessage:"If you ever forget how much you mean to me, come back here. I will remind you.",
-  reasons:["Because you're you. And somehow, that is my favorite reason."],
-  letters:[["A letter for you","You are loved. Always."]],
-  timeline:[["The Beginning","Our story starts here."]],
-  memories:[["Our memory","A beautiful memory.",50,50]]
-};
+document.addEventListener("DOMContentLoaded",()=>{
+  const name=cfg.name||"My Love";
+  $("heroName").textContent=name;
+  $("footerName").textContent=name;
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Populate personal text safely.
-  const name = cfg.name || "My Love";
-  ["introName","heroName","navName","footerName"].forEach(id => $(id).textContent = name);
-  $("introLine").textContent = cfg.introLine || "";
+  const letters=cfg.letters||[];
+  const reasons=cfg.reasons||[];
+  const memories=cfg.memories||[];
 
-  // Opening screen: the site starts hidden and becomes visible ONLY after tapping.
-  const intro = $("intro");
-  const site = $("site");
-  $("enterBtn").addEventListener("click", () => {
-    intro.classList.add("hide");
-    site.classList.add("open");
-    site.setAttribute("aria-hidden","false");
-    document.body.classList.add("started");
-    setTimeout(() => { intro.style.display = "none"; }, 900);
+  // Create many letter cards and make random-letter access endless.
+  function letterCard(x,i){
+    return `<button class="letter-card" data-letter="${i}"><span class="envelope-art">✉</span><b>${esc(x[0])}</b><small>Open me ♡</small></button>`;
+  }
+  $("lettersGrid").innerHTML=letters.map(letterCard).join("");
+  document.querySelectorAll("[data-letter]").forEach(b=>b.onclick=()=>openLetter(+b.dataset.letter));
+
+  function openLetter(i){
+    currentLetter=i;
+    const x=letters[i];
+    $("modalTitle").textContent=x[0];
+    $("modalText").textContent=x[1];
+    $("modal").classList.add("show");
+  }
+  function randomLetter(){
+    if(!letters.length)return;
+    let n=Math.floor(Math.random()*letters.length);
+    if(letters.length>1 && n===currentLetter)n=(n+1)%letters.length;
+    openLetter(n);
+  }
+  $("randomLetter").onclick=randomLetter;
+  $("missBtn").onclick=randomLetter;
+  $("modalNext").onclick=randomLetter;
+  $("closeModal").onclick=()=>$("modal").classList.remove("show");
+  $("modal").onclick=e=>{if(e.target===$("modal"))$("modal").classList.remove("show")};
+
+  // Generate a very large star field.
+  const starBox=$("constellation");
+  memories.forEach((m,i)=>{
+    const s=document.createElement("button");
+    s.className="memory-star"; s.type="button"; s.textContent="✦";
+    s.style.left=m[2]+"%"; s.style.top=m[3]+"%";
+    s.style.animationDelay=(i*.13)+"s";
+    s.title=m[0];
+    s.onclick=()=>openMemory(m);
+    starBox.appendChild(s);
   });
+  for(let i=0;i<75;i++){
+    const s=document.createElement("span");
+    s.className="tiny-star";
+    s.style.left=Math.random()*100+"%"; s.style.top=Math.random()*100+"%";
+    s.style.animationDelay=Math.random()*3+"s";
+    starBox.appendChild(s);
+  }
+  function openMemory(m){
+    $("modalTitle").textContent=m[0];
+    $("modalText").textContent=m[1];
+    $("modal").classList.add("show");
+  }
+  $("allMemories").onclick=()=>openMemory(memories[Math.floor(Math.random()*memories.length)]);
 
-  // Modal.
-  const modal = $("modal");
-  const showModal = (title,text) => {
-    $("modalTitle").textContent = title;
-    $("modalText").textContent = text;
-    modal.classList.add("show");
-    modal.setAttribute("aria-hidden","false");
-  };
-  $("closeModal").addEventListener("click", closeModal);
-  modal.addEventListener("click", e => { if(e.target === modal) closeModal(); });
-  function closeModal(){ modal.classList.remove("show"); modal.setAttribute("aria-hidden","true"); }
-
-  $("missBtn").addEventListener("click", () => {
-    const x = cfg.letters[Math.floor(Math.random()*cfg.letters.length)];
-    showModal(x[0],x[1]);
-  });
-
-  // Hug animation.
-  $("hugBtn").addEventListener("click", () => {
-    $("hugText").textContent = "🫂 Hug received. Keep it. I'm not taking it back. ❤️";
-    for(let i=0;i<12;i++){
-      const h=document.createElement("span");
-      h.className="float-heart"; h.textContent="♥";
-      h.style.left=(20+Math.random()*60)+"vw";
-      h.style.animationDelay=(Math.random()*.35)+"s";
-      document.body.appendChild(h);
-      setTimeout(()=>h.remove(),1800);
-    }
-  });
-
-  // Timeline.
-  $("timeline").innerHTML = cfg.timeline.map(x =>
-    `<article class="time-item"><h3>${escapeHTML(x[0])}</h3><p>${escapeHTML(x[1])}</p></article>`
-  ).join("");
-
-  // Letters.
-  $("envelopes").innerHTML = cfg.letters.map((x,i) =>
-    `<button class="envelope" type="button" data-i="${i}"><span>💌</span><strong>${escapeHTML(x[0])}</strong></button>`
-  ).join("");
-  document.querySelectorAll(".envelope").forEach(b => b.addEventListener("click", () => {
-    const x=cfg.letters[Number(b.dataset.i)]; showModal(x[0],x[1]);
-  }));
-
-  // Reasons.
-  let ri=0;
-  const renderReason=()=>{
-    $("reasonNumber").textContent=String(ri+1).padStart(2,"0");
-    $("reasonText").textContent=cfg.reasons[ri];
-  };
-  renderReason();
-  $("reasonBtn").addEventListener("click",()=>{ri=(ri+1)%cfg.reasons.length;renderReason();});
-
-  // Stars.
-  cfg.memories.forEach((m,i)=>{
-    const b=document.createElement("button");
-    b.type="button"; b.className="mem-star"; b.textContent="✦";
-    b.style.left=m[2]+"%"; b.style.top=m[3]+"%";
-    b.style.animationDelay=(i*.22)+"s";
-    b.addEventListener("click",()=> $("memoryText").textContent="✦ "+m[0]+" — "+m[1]);
-    $("constellation").appendChild(b);
-  });
-
-  $("comfortBtn").addEventListener("click",()=>showModal(
-    "Stay for a minute. 🌙",
-    "Breathe in slowly. Breathe out slowly. You don't have to solve everything tonight. Drink some water, rest your eyes, and remember that you are deeply loved."
-  ));
+  // Reasons: many random cards.
+  function renderReasons(){
+    const shuffled=[...reasons].sort(()=>Math.random()-.5).slice(0,8);
+    $("reasonsGrid").innerHTML=shuffled.map((r,i)=>`<button class="reason-card" data-reason="${i}"><span>${["♡","✧","☾","∞","♥","✦","❀","♢"][i]}</span><b>${esc(r)}</b></button>`).join("");
+  }
+  renderReasons(); $("moreReason").onclick=renderReasons;
 
   // Countdown.
   function countdown(){
-    const diff = new Date(cfg.nextMeeting).getTime() - Date.now();
-    if(!Number.isFinite(diff) || diff <= 0){
-      ["days","hours","minutes","seconds"].forEach(x=>$(x).textContent="00"); return;
-    }
-    $("days").textContent=String(Math.floor(diff/86400000)).padStart(2,"0");
-    $("hours").textContent=String(Math.floor(diff/3600000)%24).padStart(2,"0");
-    $("minutes").textContent=String(Math.floor(diff/60000)%60).padStart(2,"0");
-    $("seconds").textContent=String(Math.floor(diff/1000)%60).padStart(2,"0");
+    const d=new Date(cfg.nextMeeting||"2026-12-01T18:00:00").getTime()-Date.now();
+    const vals=d>0?[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60]:[0,0,0,0];
+    ["days","hours","minutes","seconds"].forEach((id,i)=>$(id).textContent=String(vals[i]).padStart(2,"0"));
   }
   countdown(); setInterval(countdown,1000);
 
-  // Secret.
-  $("unlockBtn").addEventListener("click",()=>{
-    const ok=$("secretInput").value.trim().toLowerCase() === String(cfg.secretWord).trim().toLowerCase();
-    $("secretText").textContent=ok ? "You found it. ♡ My secret? I would choose you again." : "Not quite… try the word only we would know. ♡";
-  });
-  $("secretInput").addEventListener("keydown",e=>{if(e.key==="Enter")$("unlockBtn").click();});
-
-  $("finalBtn").addEventListener("click",()=> $("finalText").textContent=cfg.finalMessage);
-
-  // Music is optional. The website never throws an error if no MP3 exists.
-  let audio=null;
-  const toggleMusic=async()=>{
-    if(!audio) audio=new Audio("assets/our-song.mp3");
-    audio.loop=true;
-    if(audio.paused){
-      try{await audio.play();$("playBtn").textContent="❚❚";$("songCaption").textContent="Playing our song ♡";}
-      catch(e){$("songCaption").textContent="Add assets/our-song.mp3 first.";}
-    }else{audio.pause();$("playBtn").textContent="▶";$("songCaption").textContent="Paused";}
+  // Extras.
+  const extra={
+    hug:["Emergency Hug","🫂 Sending you the biggest virtual hug. Keep it until we meet."],
+    bad:["Bad Day Mode","Today doesn't have to be perfect. Drink some water, breathe slowly and be gentle with yourself."],
+    morning:["Good Morning","Good morning, beautiful. I hope today gives you at least one reason to smile."],
+    night:["Good Night","Close your eyes. Leave today's worries outside the bedroom. Sleep peacefully, love."],
+    reminder:["Daily Reminder","You are loved. You are important. You are more capable than you think."],
+    voice:["Voice Note","Imagine my voice saying this softly: 'Hey, I'm here. You're okay. I love you.'"],
+    compliment:["Compliment Jar","You're ridiculously special. Yes, that's the compliment. No, I'm not taking it back."],
+    quiz:["Love Quiz","Question: Who is my favorite person? Answer: You. Congratulations, you got 100%."]
   };
-  $("playBtn").addEventListener("click",toggleMusic);
-  $("musicBtn").addEventListener("click",toggleMusic);
+  document.querySelectorAll("[data-extra]").forEach(b=>b.onclick=()=>{
+    const x=extra[b.dataset.extra]; $("modalTitle").textContent=x[0];$("modalText").textContent=x[1];$("modal").classList.add("show");
+  });
+  $("hugSide").onclick=()=>{document.querySelector('[data-extra="hug"]').click()};
+
+  // Secret.
+  $("unlockBtn").onclick=()=>{
+    const ok=$("secretInput").value.trim().toLowerCase()==String(cfg.secretWord||"love").toLowerCase();
+    $("secretText").textContent=ok?"Unlocked. ♡ You found the little secret I kept for you.":"Not quite… try the word only we would know. ♡";
+  };
+  $("secretInput").onkeydown=e=>{if(e.key==="Enter")$("unlockBtn").click()};
+
+  $("finalBtn").onclick=()=>{$("finalText").textContent=cfg.finalMessage||"I love you. Always."};
+
+  // Music: optional file.
+  const toggle=async()=>{
+    if(!audio)audio=new Audio("assets/our-song.mp3");
+    audio.loop=true;
+    try{
+      if(audio.paused){await audio.play();$("playBtn").textContent="❚❚";$("playTop").innerHTML="❚❚ <span>Pause Our Song</span>"}
+      else{audio.pause();$("playBtn").textContent="▶";$("playTop").innerHTML="♫ <span>Play Our Song</span>"}
+    }catch(e){$("modalTitle").textContent="Our Song";$("modalText").textContent="Add your MP3 as assets/our-song.mp3 and try again. ♡";$("modal").classList.add("show")}
+  };
+  $("playBtn").onclick=toggle;$("playTop").onclick=toggle;
+
+  $("galleryInfo").onclick=()=>{$("modalTitle").textContent="Our Gallery";$("modalText").textContent="Replace the 'Your Photo' placeholders with your favorite photos. ♡";$("modal").classList.add("show")};
+  $("themeBtn").onclick=()=>document.body.classList.toggle("brighter");
 });
 
-function escapeHTML(s){
-  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
 })();

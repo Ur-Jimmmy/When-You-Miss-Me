@@ -2,137 +2,127 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#05060d">
-<title>For You, Always ♡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050713">
+<title>When You Miss Me ♡</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="starfield" aria-hidden="true"></div>
+<div id="stars" aria-hidden="true"></div>
+<div class="glow glow-a"></div><div class="glow glow-b"></div>
 
-<!-- Opening screen -->
-<div id="intro" class="intro">
-  <div class="intro-content">
-    <div class="intro-stars">✦　·　✧　·　✦</div>
-    <div class="eyebrow">A little universe made for</div>
-    <h1 id="introName">My Love</h1>
-    <p id="introLine">Because sometimes distance needs a little help.</p>
-    <button class="btn" id="enterBtn" type="button">Enter my world ♡</button>
+<header class="topbar">
+  <a class="brand" href="#home"><span>♥</span><div><b>When You<br>Miss Me</b><small>A little place, just for you.</small></div></a>
+  <div class="top-actions">
+    <button id="playTop" class="top-btn">♫ <span>Play Our Song</span></button>
+    <button id="themeBtn" class="top-btn">☾</button>
   </div>
-</div>
-
-<header class="nav" id="nav">
-  <a href="#home" class="logo">♡ <span id="navName">you</span></a>
-  <button class="round" id="musicBtn" type="button" aria-label="Music">♫</button>
 </header>
 
-<main id="site" class="site" aria-hidden="true">
-<section id="home" class="hero">
-  <div class="eyebrow">01 · whenever you miss me</div>
-  <h2>Hey, <span id="heroName">love</span>…<br><em>come a little closer.</em></h2>
-  <p>I made this tiny universe so that whenever you miss me, you can find a little piece of me here.</p>
-  <button class="btn" id="missBtn" type="button">♡ I miss you</button>
-  <div class="hint">scroll slowly ↓</div>
-</section>
+<aside class="sidebar">
+  <a class="side-active" href="#home">⌂ <span>Home</span></a>
+  <a href="#story">◉ <span>Our Story</span></a>
+  <a href="#letters">✉ <span>Letters</span><i id="newBadge">New</i></a>
+  <a href="#starsSection">✦ <span>Starry Sky</span></a>
+  <a href="#gallery">▧ <span>Gallery</span></a>
+  <a href="#music">♫ <span>Music</span></a>
+  <a href="#reasons">♡ <span>Reasons</span></a>
+  <a href="#secret">♢ <span>Secret Door</span></a>
+  <a href="#extras">◌ <span>Bad Day Mode</span></a>
+  <a href="#countdown">◷ <span>Until We Meet</span></a>
+  <button id="hugSide" class="side-hug">♥ <b>Emergency Hug</b><small>Tap for a virtual hug</small></button>
+</aside>
 
-<section class="section section-center">
-  <div class="eyebrow">02 · emergency hug</div>
-  <h2>No matter the distance,<br><em>this one is free.</em></h2>
-  <button class="hug-btn" id="hugBtn" type="button">🫂 SEND HUG</button>
-  <p id="hugText" class="soft"></p>
-</section>
-
-<section class="section">
-  <div class="eyebrow">03 · our story</div>
-  <h2>A story I'd<br><em>choose again.</em></h2>
-  <div class="timeline" id="timeline"></div>
-</section>
-
-<section class="section">
-  <div class="eyebrow">04 · open one</div>
-  <h2>Letters I couldn't<br><em>fit into one message.</em></h2>
-  <div class="envelopes" id="envelopes"></div>
-</section>
-
-<section class="section">
-  <div class="eyebrow">05 · little things</div>
-  <h2>Why I love<br><em>you.</em></h2>
-  <div class="reason-card">
-    <span id="reasonNumber">01</span>
-    <p id="reasonText"></p>
-    <button class="ghost" id="reasonBtn" type="button">Another reason ♡</button>
+<main class="dashboard">
+<section id="home" class="hero-card">
+  <div class="hero-copy">
+    <div class="eyebrow">FOR YOU · ALWAYS</div>
+    <h1>Hey <span id="heroName">love</span>,<br><em>come a little closer…</em></h1>
+    <p>No matter the distance, you're always in my thoughts, in my heart, in my everything.</p>
+    <button id="missBtn" class="pink-btn">I Miss You ♡</button>
+    <small>♡ Every second with you is my favorite.</small>
+  </div>
+  <div class="count-card" id="countdown">
+    <b>Until We Meet</b>
+    <div class="big-count"><span id="days">00</span><i>:</i><span id="hours">00</span><i>:</i><span id="minutes">00</span><i>:</i><span id="seconds">00</span></div>
+    <div class="count-label"><span>DAYS</span><span>HRS</span><span>MINS</span><span>SECS</span></div>
+    <p>“Distance is only a test,<br>not the end of our story.”</p><span>♡</span>
   </div>
 </section>
 
-<section class="section">
-  <div class="eyebrow">06 · our universe</div>
-  <h2>Tap a star.<br><em>Find a memory.</em></h2>
-  <div class="constellation" id="constellation"></div>
-  <p id="memoryText" class="memory-text">The stars are waiting…</p>
+<section id="letters" class="panel">
+  <div class="section-head"><div><h2>✉ Love Letters</h2><p>Open one whenever you need me.</p></div><button id="randomLetter" class="outline-btn">⤨ Open Random Letter ♡</button></div>
+  <div id="lettersGrid" class="letters-grid"></div>
+  <div class="section-note">Each letter is a piece of my heart, written just for you. ♡</div>
 </section>
 
-<section class="section section-center">
-  <div class="eyebrow">07 · our little radio</div>
-  <h2>A song that<br><em>sounds like us.</em></h2>
-  <div class="player">
-    <div class="disc">♡</div>
-    <div class="track">
-      <strong>Our Song</strong>
-      <small id="songCaption">Add assets/our-song.mp3</small>
+<section id="starsSection" class="panel stars-panel">
+  <div class="section-head"><div><h2>✦ Our Starry Sky</h2><p>Tap a star to reveal a memory.</p></div><button id="allMemories" class="outline-btn">★ View All Memories</button></div>
+  <div id="constellation" class="constellation"></div>
+</section>
+
+<section id="reasons" class="panel">
+  <div class="section-head"><div><h2>♥ Why I Love You</h2><p>Tap to read a random reason.</p></div><button id="moreReason" class="outline-btn">♡ More Reasons ♡</button></div>
+  <div id="reasonsGrid" class="reasons-grid"></div>
+</section>
+
+<section id="gallery" class="panel">
+  <div class="section-head"><div><h2>▧ Our Memories</h2><p>Some of my favorite moments with you.</p></div><button class="outline-btn" id="galleryInfo">▦ View Full Gallery</button></div>
+  <div class="gallery-grid">
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>Us ♡</b></div>
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>Sunsets & You</b></div>
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>Random Clicks ✨</b></div>
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>You Smile</b></div>
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>Favorite Place</b></div>
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>Good Vibes Only</b></div>
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>Better Together</b></div>
+    <div class="photo-card"><div class="photo-placeholder">Your<br>Photo</div><b>My Happiness</b></div>
+  </div>
+</section>
+
+<section id="music" class="panel">
+  <div class="section-head"><div><h2>♫ Our Music</h2><p>The songs that remind me of you.</p></div></div>
+  <div class="music-layout">
+    <div class="music-player">
+      <div class="album">♡</div>
+      <div class="track-info"><h3>Our Song</h3><p>A song for you, always.</p><input id="progress" type="range" min="0" max="100" value="0"></div>
+      <button id="playBtn" class="play-round">▶</button>
     </div>
-    <button class="round" id="playBtn" type="button">▶</button>
+    <div class="song-list"><b>Songs For You</b><p>01. Our Song ♡</p><p>02. Perfect</p><p>03. Photograph</p><p>04. All of Me</p></div>
+    <div class="song-message"><b>A Message In This Song</b><p>Whenever you listen to it, I want you to know that no matter where we are, my heart is always singing for you. ♡</p></div>
   </div>
 </section>
 
-<section class="section section-center">
-  <div class="eyebrow">08 · for difficult days</div>
-  <h2>If today is heavy,<br><em>stay here for a minute.</em></h2>
-  <button class="btn" id="comfortBtn" type="button">Stay with me ♡</button>
-</section>
-
-<section class="section section-center">
-  <div class="eyebrow">09 · until we meet again</div>
-  <h2>Every second is<br><em>one second closer.</em></h2>
-  <div class="timer">
-    <div><b id="days">00</b><small>days</small></div>
-    <div><b id="hours">00</b><small>hours</small></div>
-    <div><b id="minutes">00</b><small>minutes</small></div>
-    <div><b id="seconds">00</b><small>seconds</small></div>
+<section id="extras" class="panel">
+  <div class="section-head"><div><h2>♥ More For You</h2><p>Little things I made for you.</p></div></div>
+  <div class="extras-grid">
+    <button data-extra="hug">🫂<b>Emergency Hug</b><small>Tap whenever you need a hug.</small></button>
+    <button data-extra="bad">🌧<b>Bad Day Mode</b><small>When things don't feel right.</small></button>
+    <button data-extra="morning">☀<b>Good Morning</b><small>Start your day with love.</small></button>
+    <button data-extra="night">☾<b>Good Night</b><small>Sleep tight, my love.</small></button>
+    <button data-extra="reminder">🔔<b>Daily Reminder</b><small>Little reminders throughout the day.</small></button>
+    <button data-extra="voice">🎙<b>Voice Note</b><small>A special voice message.</small></button>
+    <button data-extra="compliment">💌<b>Compliment Jar</b><small>Words to make you smile.</small></button>
+    <button data-extra="quiz">💗<b>Love Quiz</b><small>How well do you know me?</small></button>
   </div>
 </section>
 
-<section class="section section-center">
-  <div class="eyebrow">10 · classified</div>
-  <h2>You found<br><em>the secret door.</em></h2>
-  <p class="soft">Only one word opens it.</p>
-  <div class="secret-form">
-    <input id="secretInput" type="password" autocomplete="off" placeholder="Our secret word">
-    <button class="btn" id="unlockBtn" type="button">Unlock</button>
-  </div>
-  <p id="secretText" class="memory-text"></p>
+<section id="secret" class="panel secret-panel">
+  <div><h2>♢ Secret Door</h2><p>A little secret, just for you.</p></div>
+  <div class="secret-box"><span>Enter the secret word</span><div><input id="secretInput" type="password" placeholder="••••••••"><button id="unlockBtn" class="pink-btn">Enter</button></div><p id="secretText"></p></div>
+  <div class="key-art">♡<small>The best things are always hidden<br>for the one who matters most.</small></div>
 </section>
 
-<section class="section section-center final">
-  <div class="intro-stars">✦　·　✧　·　✦</div>
-  <div class="eyebrow">11 · one last thing</div>
-  <h2>If you ever forget<br><em>how much you mean to me…</em></h2>
-  <button class="ghost" id="finalBtn" type="button">Remind me</button>
-  <p id="finalText" class="final-text"></p>
+<section class="closing">
+  <div class="closing-copy"><div class="eyebrow">ONE LAST THING</div><h2>If you ever forget<br><em>how much you mean to me…</em><br><strong>Read everything here again.</strong></h2><button id="finalBtn" class="pink-btn">Remind Me ♡</button><p id="finalText"></p></div>
+  <div class="moon">☾</div>
 </section>
+<footer>Made with love, for <span id="footerName">you</span> ♡</footer>
 </main>
 
-<footer>Made with love, for <span id="footerName">you</span> ♡</footer>
-
-<div id="modal" class="modal" aria-hidden="true">
-  <div class="modal-box" role="dialog" aria-modal="true">
-    <button id="closeModal" class="close" type="button">×</button>
-    <div class="big-heart">♡</div>
-    <h3 id="modalTitle"></h3>
-    <p id="modalText"></p>
-  </div>
-</div>
+<div id="modal" class="modal"><div class="modal-box"><button id="closeModal" class="close">×</button><div class="modal-icon">♡</div><div class="modal-tag">JUST FOR YOU</div><h2 id="modalTitle"></h2><p id="modalText"></p><button id="modalNext" class="pink-btn">Another Letter ♡</button></div></div>
 
 <script src="config.js"></script>
 <script src="script.js"></script>

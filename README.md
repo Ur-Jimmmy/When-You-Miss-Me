@@ -1,8 +1,10 @@
-# When You Miss Me — V2.1 FIXED ❤️
+# When You Miss Me — Starry V3 ❤️
 
-This build fixes the mobile opening-screen/layout problem from V2.
+This is the upgraded dashboard-style version inspired by the provided visual reference.
 
-## Upload these files
+## Upload to GitHub
+
+Keep these together in the repository root:
 
 - index.html
 - style.css
@@ -10,26 +12,23 @@ This build fixes the mobile opening-screen/layout problem from V2.
 - config.js
 - assets/
 
-## Important
+## Personalize
 
-Keep `config.js` in the SAME folder as `index.html`.
+Edit `config.js`.
 
-The site does not depend on music. If you do not add `assets/our-song.mp3`, everything else still works.
+You can add unlimited permanent letters to the `letters` array. The Random Letter button can open any of them.
+
+The Starry Sky also creates many extra background stars automatically.
+
+## Photos
+
+Replace the "Your Photo" placeholders later with your own images.
+
+## Music
+
+Optional:
+`assets/our-song.mp3`
 
 ## GitHub Pages
 
-Repository → Settings → Pages → Deploy from a branch → main → / (root) → Save.
-
-Then open the generated Pages address on your phone.
-
-## Personalize
-
-Edit `config.js` for:
-- name
-- meeting date
-- secret word
-- letters
-- reasons
-- timeline
-- memories
-- final message
+Settings → Pages → Deploy from a branch → main → / (root) → Save.
