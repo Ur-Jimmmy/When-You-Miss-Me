@@ -247,7 +247,7 @@
 <div id="modal" class="modal"><div class="modal-box"><button id="closeModal" class="close">×</button><div class="modal-icon">♡</div><div class="modal-tag">JUST FOR YOU</div><h2 id="modalTitle"></h2><p id="modalText"></p><div id="modalRelatable" class="modal-relatable" hidden><div class="relatable-line" id="relatableLine"></div><button id="relatableBtn" class="outline-btn">Tap for a little more ♡</button></div><button id="modalNext" class="pink-btn">Another Letter ♡</button></div></div>
 
 <script>
-const CONFIG = {
+window.CONFIG = {
   name: "My Love",
   nextMeeting: "2026-12-01T18:00:00",
   secretWord: "love",
@@ -352,6 +352,69 @@ function init(){
   $("modalNext")?.addEventListener("click",randomLetter);
   $("closeModal")?.addEventListener("click",()=>$("modal").classList.remove("show"));
   $("modal")?.addEventListener("click",e=>{if(e.target===$("modal"))$("modal").classList.remove("show")});
+
+  // Relatable mini-interactions: every message opens with a small action.
+  const relatable={
+    miss:[
+      ["Put your hand on your heart for five seconds. ♡","Now imagine Jimmy saying: 'Come here, Jiya. No distance for this moment.' 🫂"],
+      ["Close your eyes and take one slow breath.","That breath is a tiny hello from Jimmy. I'm still here, loving you. ❤️"],
+      ["Look at the sky for a second. 🌙","Somewhere under the same sky, Jimmy is thinking about Jiya too."],
+      ["Smile just a little for me.","There. That's the face Jimmy wishes he could see right now. 💗"]
+    ],
+    hug:[
+      ["Wrap your arms around yourself for three seconds.","Keep holding… pretend Jimmy is doing the same thing around you. 🫂"],
+      ["Press your palm over your heart.","That little heartbeat gets an imaginary forehead kiss from Jimmy. 🌸"]
+    ],
+    sad:[
+      ["Take three slow breaths before reading the next line.","You don't have to solve today right now. Just be gentle with yourself, Jiya."],
+      ["Drink a little water and come back.","Good. One tiny act of care counts. Jimmy is proud of you. ♡"]
+    ],
+    night:[
+      ["Put your phone a little farther away after this.","Close your eyes. Goodnight, Jiya. Jimmy is leaving one last hug beside your pillow. 🌙"],
+      ["Take one slow breath and unclench your shoulders.","Now rest. Tomorrow can wait. You deserve a peaceful night. ♡"]
+    ],
+    happy:[
+      ["Keep smiling for five seconds. Don't stop.","Mission accomplished. Jimmy officially loves that smile. 😘"],
+      ["Think of one tiny thing that made you happy today.","Keep that feeling. Jimmy hopes he gets to be one of those little reasons someday. ✨"]
+    ],
+    love:[
+      ["Say quietly: 'I am loved.'", "Yes, Jiya. You are. And Jimmy hopes you never forget it. ❤️"],
+      ["Tap your heart once.","That's where Jimmy would like to leave this little message: I love you. ♡"]
+    ],
+    general:[
+      ["Take a tiny pause before reading the next part.","Okay… now smile. Jimmy made this little moment just for Jiya. ♡"],
+      ["Close your eyes for two seconds.","Open them. Surprise: you're still ridiculously loved. 💌"]
+    ]
+  };
+  function showRelatable(kind,title,text){
+    const pool=relatable[kind]||relatable.general;
+    const pair=pool[Math.floor(Math.random()*pool.length)];
+    set("modalTitle",title); set("modalText",text);
+    const box=$("modalRelatable"),line=$("relatableLine"),btn=$("relatableBtn");
+    if(box&&line&&btn){box.hidden=false;line.textContent=pair[0];btn.textContent="I did it ♡";btn.onclick=()=>{line.textContent=pair[1];btn.textContent="Another little moment ♡";btn.onclick=()=>showRelatable(kind,title,text)}}
+    $("modal")?.classList.add("show");
+  }
+  function kindFor(title){
+    const t=String(title).toLowerCase();
+    if(t.includes("miss"))return "miss"; if(t.includes("hug"))return "hug"; if(t.includes("sad")||t.includes("bad day"))return "sad";
+    if(t.includes("sleep")||t.includes("night"))return "night"; if(t.includes("happy")||t.includes("smile"))return "happy"; if(t.includes("love"))return "love"; return "general";
+  }
+  // Override letter opening so tapping a letter gives a mini moment too.
+  const originalOpenLetter=openLetter;
+  openLetter=function(i){
+    if(!letters[i])return; current=i;
+    showRelatable(kindFor(letters[i][0]),letters[i][0],letters[i][1]);
+  };
+  grid?.querySelectorAll("[data-letter]").forEach(b=>b.onclick=()=>openLetter(+b.dataset.letter));
+  $("missBtn")?.addEventListener("click",()=>showRelatable("miss","I Miss You ♡","I know that feeling. So here's a tiny piece of Jimmy for this moment."));
+
+  // Make all extra cards interactive with a matching mini-action.
+  document.querySelectorAll("[data-extra]").forEach(b=>b.onclick=()=>{
+    const x=extra[b.dataset.extra]; if(!x)return;
+    const k=b.dataset.extra==='hug'?'hug':b.dataset.extra==='bad'?'sad':b.dataset.extra==='night'?'night':b.dataset.extra==='morning'?'happy':b.dataset.extra==='compliment'?'happy':b.dataset.extra==='reminder'?'love':'general';
+    showRelatable(k,x[0],x[1]);
+  });
+
 
   // Stars
   const constellation=$("constellation");
@@ -491,9 +554,9 @@ function init(){
   // Touch hug
   let holdTimer=null,holdStart=0,holding=false;
   function resetHold(){clearInterval(holdTimer);holdTimer=null;holding=false;$("touchProgress").style.width="0%";set("touchText","0%")}
-  function beginHold(e){e.preventDefault();if(holding)return;holding=true;holdStart=Date.now();holdTimer=setInterval(()=>{const pct=Math.min(100,(Date.now()-holdStart)/18);$("touchProgress").style.width=pct+"%";set("touchText",Math.floor(pct)+"%");if(pct>=100)finishHold()},18)}
-  function finishHold(){if(!holding)return;clearInterval(holdTimer);holding=false;$("touchProgress").style.width="100%";set("touchText","100%");set("modalTitle","Jimmy's Secret Hug 🫂");set("modalText","Jiya, imagine Jimmy pulling you close and saying very quietly: 'You don't have to miss me alone. I'm right here.'");$("modal").classList.add("show");setTimeout(resetHold,900)}
-  $("touchCard")?.addEventListener("pointerdown",beginHold);$("touchCard")?.addEventListener("pointerup",finishHold);$("touchCard")?.addEventListener("pointercancel",resetHold);$("touchCard")?.addEventListener("pointerleave",resetHold);
+  function beginHold(e){e.preventDefault();if(holding)return;holding=true;try{$("touchCard").setPointerCapture(e.pointerId)}catch(_){};holdStart=Date.now();holdTimer=setInterval(()=>{const pct=Math.min(100,(Date.now()-holdStart)/18);$("touchProgress").style.width=pct+"%";set("touchText",Math.floor(pct)+"%");if(pct>=100)finishHold()},18)}
+  function finishHold(){if(!holding)return;clearInterval(holdTimer);holding=false;$("touchProgress").style.width="100%";set("touchText","100%");showRelatable("hug","Jimmy's Secret Hug 🫂","Jiya, you found the hug. Keep holding the feeling for a second.");setTimeout(resetHold,1100)}
+  $("touchCard")?.addEventListener("pointerdown",beginHold);$("touchCard")?.addEventListener("pointerup",finishHold);$("touchCard")?.addEventListener("pointercancel",resetHold);
 }
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
