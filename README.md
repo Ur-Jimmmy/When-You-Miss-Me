@@ -1,19 +1,16 @@
-# When You Miss Me — V4 Playful Love Edition ❤️
+# For Jiya, From Jimmy — V5 💗
 
-V4 adds a more playful, touch-first experience.
+A playful, touch-first romantic mini-site.
 
-### New
-- 🎮 30-second **Catch My Hearts** love game
-- 💌 Special heart messages during the game
-- 🏆 Local high score saved in the browser
-- 🫶 Press-and-hold **Secret Hug**
-- 📱 Large touch targets and mobile-friendly controls
-- ✨ Existing random letters + starry sky remain
+## Games
+1. Catch My Hearts — 30-second arcade game with score + best score.
+2. How Well Do You Know Us? — 6-question love quiz.
+3. Pick a Kiss — three playful choices.
+4. Secret Hug — press and hold.
 
-Upload all files to the same GitHub Pages repository.
+## Important
+V5 uses a fresh `script.js?v=5` cache-buster and a safer initialization pattern so the games start reliably on GitHub Pages and mobile Chrome.
 
-Optional music:
-`assets/our-song.mp3`
+Upload all files/folders, keeping the same structure.
 
-Personalize:
-Edit `config.js`.
+Personalize `config.js` for letters, reasons, memories, meeting date and secret word.

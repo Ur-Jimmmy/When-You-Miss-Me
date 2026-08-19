@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#050713">
-<title>When You Miss Me ♡</title>
+<title>For Jiya, From Jimmy ♡</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -14,7 +14,7 @@
 <div class="glow glow-a"></div><div class="glow glow-b"></div>
 
 <header class="topbar">
-  <a class="brand" href="#home"><span>♥</span><div><b>When You<br>Miss Me</b><small>A little place, just for you.</small></div></a>
+  <a class="brand" href="#home"><span>♥</span><div><b>For Jiya ♡</b><small>From Jimmy · Always.</small></div></a>
   <div class="top-actions">
     <button id="playTop" class="top-btn">♫ <span>Play Our Song</span></button>
     <button id="themeBtn" class="top-btn">☾</button>
@@ -39,8 +39,8 @@
 <main class="dashboard">
 <section id="home" class="hero-card">
   <div class="hero-copy">
-    <div class="eyebrow">FOR YOU · ALWAYS</div>
-    <h1>Hey <span id="heroName">love</span>,<br><em>come a little closer…</em></h1>
+    <div class="eyebrow">FOR JIYA · ALWAYS</div>
+    <h1>Hey <span id="heroName">Jiya</span>,<br><em>come a little closer…</em></h1>
     <p>No matter the distance, you're always in my thoughts, in my heart, in my everything.</p>
     <button id="missBtn" class="pink-btn">I Miss You ♡</button>
     <small>♡ Every second with you is my favorite.</small>
@@ -99,42 +99,67 @@
 
 <section id="loveGame" class="panel game-panel">
   <div class="section-head">
-    <div>
-      <h2>🎮 Our Little Love Game</h2>
-      <p>A tiny game for the moments you miss me.</p>
-    </div>
-    <button id="newGame" class="outline-btn">↻ New Game</button>
+    <div><h2>🎮 Jiya & Jimmy Love Arcade</h2><p>Little games made just for you, Jiya.</p></div>
+    <span class="made-for">♥ Made by Jimmy</span>
   </div>
 
-  <div class="game-wrap">
-    <div class="game-top">
-      <div><span>💗 Hearts caught</span><b id="score">0</b></div>
-      <div><span>⏱ Time</span><b id="gameTime">30</b></div>
-      <div><span>🏆 Best</span><b id="bestScore">0</b></div>
-    </div>
-    <div id="loveGameBoard" class="love-game-board">
-      <div class="game-start">
-        <div class="game-heart">♡</div>
-        <h3>Catch my hearts!</h3>
-        <p>Tap the hearts before they disappear.<br>Some carry little messages. 💌</p>
-        <button id="startGame" class="pink-btn">Start Love Game ♥</button>
+  <div class="game-tabs">
+    <button class="game-tab active" data-game="catch">💗 Catch My Hearts</button>
+    <button class="game-tab" data-game="quiz">💌 How Well Do You Know Us?</button>
+    <button class="game-tab" data-game="kiss">💋 Pick a Kiss</button>
+  </div>
+
+  <div id="catchGame" class="game-view active">
+    <div class="game-wrap">
+      <div class="game-top">
+        <div><span>💗 Hearts</span><b id="score">0</b></div>
+        <div><span>⏱ Time</span><b id="gameTime">30</b></div>
+        <div><span>🏆 Best</span><b id="bestScore">0</b></div>
       </div>
+      <div id="loveGameBoard" class="love-game-board">
+        <div class="game-start" id="catchStart">
+          <div class="game-heart">♡</div>
+          <h3>Catch my hearts!</h3>
+          <p>Tap every heart before it fades.<br>💌 hearts are worth 3 points.</p>
+          <button id="startGame" class="pink-btn">Start Game ♥</button>
+        </div>
+      </div>
+      <div class="game-message" id="gameMessage">Every heart you catch is one imaginary hug from Jimmy. 🫂</div>
     </div>
-    <div class="game-message" id="gameMessage">Every heart you catch is one imaginary hug from me. 🫂</div>
+  </div>
+
+  <div id="quizGame" class="game-view">
+    <div class="quiz-card">
+      <div class="quiz-progress"><i id="quizProgress"></i></div>
+      <div class="quiz-count" id="quizCount">Question 1 of 6</div>
+      <h3 id="quizQuestion"></h3>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div id="quizResult"></div>
+      <button id="quizNext" class="pink-btn quiz-next" hidden>Next ♡</button>
+    </div>
+  </div>
+
+  <div id="kissGame" class="game-view">
+    <div class="kiss-card">
+      <div class="kiss-moon">💋</div>
+      <h3>Pick one for Jiya</h3>
+      <p>Jimmy has hidden three kisses. Choose one.</p>
+      <div class="kiss-options">
+        <button data-kiss="forehead">🌸<b>Forehead Kiss</b><small>soft & safe</small></button>
+        <button data-kiss="cheek">💕<b>Cheek Kiss</b><small>cute & playful</small></button>
+        <button data-kiss="surprise">💋<b>Mystery Kiss</b><small>extra special</small></button>
+      </div>
+      <div id="kissResult" class="kiss-result">Choose carefully, Jiya… ♡</div>
+    </div>
   </div>
 </section>
 
 <section class="panel touch-panel">
-  <div class="section-head">
-    <div>
-      <h2>🫶 Touch Me</h2>
-      <p>Go on… press the screen.</p>
-    </div>
-  </div>
+  <div class="section-head"><div><h2>🫶 Jimmy's Secret Hug</h2><p>Press and hold for Jiya.</p></div></div>
   <div class="touch-card" id="touchCard">
     <div class="touch-heart">♥</div>
     <h3>Press & hold</h3>
-    <p>Keep your finger here for a little surprise.</p>
+    <p>Keep your finger here until the heart fills.</p>
     <div class="touch-progress"><i id="touchProgress"></i></div>
     <b id="touchText">0%</b>
   </div>
@@ -164,12 +189,12 @@
   <div class="closing-copy"><div class="eyebrow">ONE LAST THING</div><h2>If you ever forget<br><em>how much you mean to me…</em><br><strong>Read everything here again.</strong></h2><button id="finalBtn" class="pink-btn">Remind Me ♡</button><p id="finalText"></p></div>
   <div class="moon">☾</div>
 </section>
-<footer>Made with love, for <span id="footerName">you</span> ♡</footer>
+<footer>Made with love, for <span id="footerName">Jiya</span> · from Jimmy ♡</footer>
 </main>
 
 <div id="modal" class="modal"><div class="modal-box"><button id="closeModal" class="close">×</button><div class="modal-icon">♡</div><div class="modal-tag">JUST FOR YOU</div><h2 id="modalTitle"></h2><p id="modalText"></p><button id="modalNext" class="pink-btn">Another Letter ♡</button></div></div>
 
 <script src="config.js"></script>
-<script src="script.js"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

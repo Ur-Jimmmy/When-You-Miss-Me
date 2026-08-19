@@ -53,3 +53,20 @@ body.brighter:before{background:radial-gradient(circle at 55% 8%,#45335f99,trans
 .touch-card>b{font-size:8px;color:#8e8491}
 @keyframes beat{50%{transform:scale(1.12)}}
 @media(max-width:760px){.love-game-board{height:430px}.game-top b{font-size:20px}.game-message{font-size:15px}.touch-card{padding:24px 15px}}
+
+.made-for{font:14px "Cormorant Garamond",serif;color:#ff91b8}
+.game-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 auto 12px;max-width:900px}
+.game-tab{border:1px solid #ffffff15;background:#ffffff05;color:#aaa2b0;border-radius:999px;padding:10px 14px;font-size:9px;cursor:pointer}
+.game-tab.active{background:#ff5d9d18;border-color:#ff76aa66;color:#ff9bbc}
+.game-view{display:none}.game-view.active{display:block}
+.quiz-card,.kiss-card{max-width:900px;margin:auto;border:1px solid #ffffff10;background:#090b1ad9;border-radius:20px;padding:28px;text-align:center;min-height:360px}
+.quiz-progress{height:5px;background:#ffffff0b;border-radius:20px;overflow:hidden;margin-bottom:16px}.quiz-progress i{display:block;width:0;height:100%;background:#ff75a7}
+.quiz-count{font-size:8px;color:#837b89;letter-spacing:.15em;text-transform:uppercase}
+.quiz-card h3,.kiss-card h3{font:600 31px "Cormorant Garamond",serif;margin:17px auto;max-width:650px}
+.quiz-options{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;max-width:650px;margin:auto}
+.quiz-option{border:1px solid #ffffff12;background:#ffffff06;color:#ddd5de;border-radius:12px;padding:14px;cursor:pointer;font:14px "Cormorant Garamond",serif}
+.quiz-option:hover{border-color:#ff7cae66;transform:translateY(-2px)}.quiz-option.correct{background:#ff6da51c;border-color:#ff8bb5;color:#ffb6ce}.quiz-option.wrong{opacity:.5}
+#quizResult{min-height:26px;margin:13px;color:#ff9bbb;font:16px "Cormorant Garamond",serif}.quiz-next{margin-top:4px}
+.kiss-moon{font-size:55px;text-shadow:0 0 30px #ff5c9d66;animation:floatHeart 1.5s infinite}.kiss-card p{color:#928a99;font-size:10px}
+.kiss-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:700px;margin:25px auto}.kiss-options button{min-height:120px;border:1px solid #ffffff12;background:linear-gradient(145deg,#24162e,#0d1020);border-radius:14px;color:white;cursor:pointer}.kiss-options button:hover{transform:translateY(-5px);border-color:#ff7dae66}.kiss-options button:first-line{font-size:24px}.kiss-options b,.kiss-options small{display:block}.kiss-options b{font:600 16px "Cormorant Garamond",serif;margin-top:8px}.kiss-options small{font-size:8px;color:#837a89;margin-top:3px}.kiss-result{min-height:30px;color:#ff9abb;font:20px "Cormorant Garamond",serif}
+@media(max-width:760px){.game-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}.game-tab{white-space:nowrap}.quiz-options{grid-template-columns:1fr}.kiss-options{grid-template-columns:1fr}.quiz-card,.kiss-card{padding:22px 14px}.quiz-card h3,.kiss-card h3{font-size:27px}}
