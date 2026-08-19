@@ -1,15 +1,14 @@
-# For Jiya, From Jimmy — V6 ❤️
+# For Jiya, From Jimmy — V7 ❤️
 
-V6 keeps all V5 games/features and adds a new hidden area that appears after the Secret Door password is entered.
+This version fixes the Secret Door unlock behavior.
 
-### After unlocking
-- 📖 Our Hidden Story
-- 🔮 Love Fortune
-- 🤝 Jimmy's Promise
-- 💌 Compliment Machine
-- 🌙 Make A Wish (3-tap interaction)
-- ❤️ One Last Secret
+Secret password: `love`
 
-Secret password remains `love`.
+After the correct password:
+- The hidden room becomes visible.
+- The page automatically scrolls to it.
+- The button changes to `Unlocked ✓`.
+- Six new surprise cards appear.
+- Moon wish interaction unlocks a final message.
 
-Upload/replace `index.html`, `style.css`, `script.js`, and `README.md` in the GitHub repository. Keep `config.js` and `assets/`.
+Replace index.html, style.css and script.js. Keep config.js and assets/.

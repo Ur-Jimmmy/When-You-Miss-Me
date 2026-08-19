@@ -64,9 +64,50 @@ function init(){
   document.querySelectorAll("[data-extra]").forEach(b=>b.onclick=()=>{const x=extra[b.dataset.extra];if(x){set("modalTitle",x[0]);set("modalText",x[1]);$("modal").classList.add("show")}});
   $("hugSide")?.addEventListener("click",()=>document.querySelector('[data-extra="hug"]')?.click());
 
-  $("unlockBtn")?.addEventListener("click",()=>{const ok=($("secretInput").value||"").trim().toLowerCase()==String(cfg.secretWord||"love").toLowerCase();$("secretText").textContent=ok?"Unlocked. ♡ Jiya found Jimmy's little secret.":"Not quite… try the word only we would know. ♡"});
+  $("unlockBtn")?.addEventListener("click",()=>{
+    const ok=($("secretInput").value||"").trim().toLowerCase()===String(cfg.secretWord||"love").toLowerCase();
+    $("secretText").textContent=ok?"Unlocked. ♡ Jiya found Jimmy's little secret.":"Not quite… try the word only we would know. ♡";
+    if(ok){
+      const room=$("secretUnlocked");
+      if(room){
+        room.hidden=false;
+        room.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+      $("secretInput").value="";
+      $("unlockBtn").textContent="Unlocked ✓";
+      $("unlockBtn").disabled=true;
+    }
+  });
   $("secretInput")?.addEventListener("keydown",e=>{if(e.key==="Enter")$("unlockBtn").click()});
   $("finalBtn")?.addEventListener("click",()=>set("finalText",cfg.finalMessage||"Jiya, I love you. Always."));
+
+  // V7 hidden room
+  const hidden={
+    story:["Our Hidden Story","Once there was a boy named Jimmy who found a girl named Jiya. Slowly, her smile became one of his favorite places to return to. So he built this tiny world: whenever Jiya missed him, she could open it and find a little piece of Jimmy waiting for her. ♡"],
+    promise:["Jimmy's Promise","I promise to keep choosing you in the little things: in the random messages, the silly jokes, the difficult days, and the quiet nights. Distance can change where we are, but it doesn't get to decide where my heart is."],
+    fortune:["Love Fortune","Today's prediction: Jiya will smile for no reason, think about Jimmy at least once, and receive an imaginary forehead kiss before the day ends. ✨"],
+    compliment:["Compliment Machine","Jiya is officially too cute today. This machine has checked the evidence and reached the same conclusion: Jimmy is ridiculously lucky. 💗"],
+    memory:["Secret Memory","Some memories don't need photographs. Sometimes a name, a song, or one little notification is enough to bring the whole feeling back. That's what Jiya is to Jimmy."],
+    final:["The Last Secret","If you reached this far, remember: the website is only the gift. The real gift is every ordinary moment we still get to create together. I love you, Jiya. — Jimmy ❤️"]
+  };
+  document.querySelectorAll("[data-hidden]").forEach(b=>b.addEventListener("click",()=>{
+    const x=hidden[b.dataset.hidden]; if(!x)return;
+    set("modalTitle",x[0]);set("modalText",x[1]);$("modal").classList.add("show");
+  }));
+  let wishCount=0;
+  $("secretMoon")?.addEventListener("click",()=>{
+    wishCount++;
+    $("wishDots").textContent=["● ○ ○","● ● ○","● ● ●"][Math.min(wishCount-1,2)];
+    if(wishCount===1)set("wishText","The moon heard the first part. 🌙");
+    if(wishCount===2)set("wishText","Almost… one more. ✨");
+    if(wishCount>=3){
+      set("wishText","Wish accepted. Jimmy's wish is that Jiya always has a reason to smile. ♡");
+      set("modalTitle","A Wish From Jimmy 🌙");
+      set("modalText","You don't have to tell me your wish. Keep it safe. I'll quietly wish for the same thing: happiness for you.");
+      $("modal").classList.add("show");
+      setTimeout(()=>{wishCount=0;$("wishDots").textContent="○ ○ ○"},1200);
+    }
+  });
 
   // Music
   let audio=null;
