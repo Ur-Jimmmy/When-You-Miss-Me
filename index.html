@@ -30,6 +30,7 @@
   <a href="#music">♫ <span>Music</span></a>
   <a href="#reasons">♡ <span>Reasons</span></a>
   <a href="#secret">♢ <span>Secret Door</span></a>
+  <a href="#loveGame">🎮 <span>Love Game</span></a>
   <a href="#extras">◌ <span>Bad Day Mode</span></a>
   <a href="#countdown">◷ <span>Until We Meet</span></a>
   <button id="hugSide" class="side-hug">♥ <b>Emergency Hug</b><small>Tap for a virtual hug</small></button>
@@ -92,6 +93,50 @@
     </div>
     <div class="song-list"><b>Songs For You</b><p>01. Our Song ♡</p><p>02. Perfect</p><p>03. Photograph</p><p>04. All of Me</p></div>
     <div class="song-message"><b>A Message In This Song</b><p>Whenever you listen to it, I want you to know that no matter where we are, my heart is always singing for you. ♡</p></div>
+  </div>
+</section>
+
+
+<section id="loveGame" class="panel game-panel">
+  <div class="section-head">
+    <div>
+      <h2>🎮 Our Little Love Game</h2>
+      <p>A tiny game for the moments you miss me.</p>
+    </div>
+    <button id="newGame" class="outline-btn">↻ New Game</button>
+  </div>
+
+  <div class="game-wrap">
+    <div class="game-top">
+      <div><span>💗 Hearts caught</span><b id="score">0</b></div>
+      <div><span>⏱ Time</span><b id="gameTime">30</b></div>
+      <div><span>🏆 Best</span><b id="bestScore">0</b></div>
+    </div>
+    <div id="loveGameBoard" class="love-game-board">
+      <div class="game-start">
+        <div class="game-heart">♡</div>
+        <h3>Catch my hearts!</h3>
+        <p>Tap the hearts before they disappear.<br>Some carry little messages. 💌</p>
+        <button id="startGame" class="pink-btn">Start Love Game ♥</button>
+      </div>
+    </div>
+    <div class="game-message" id="gameMessage">Every heart you catch is one imaginary hug from me. 🫂</div>
+  </div>
+</section>
+
+<section class="panel touch-panel">
+  <div class="section-head">
+    <div>
+      <h2>🫶 Touch Me</h2>
+      <p>Go on… press the screen.</p>
+    </div>
+  </div>
+  <div class="touch-card" id="touchCard">
+    <div class="touch-heart">♥</div>
+    <h3>Press & hold</h3>
+    <p>Keep your finger here for a little surprise.</p>
+    <div class="touch-progress"><i id="touchProgress"></i></div>
+    <b id="touchText">0%</b>
   </div>
 </section>
 

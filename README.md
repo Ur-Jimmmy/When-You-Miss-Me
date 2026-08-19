@@ -1,34 +1,19 @@
-# When You Miss Me — Starry V3 ❤️
+# When You Miss Me — V4 Playful Love Edition ❤️
 
-This is the upgraded dashboard-style version inspired by the provided visual reference.
+V4 adds a more playful, touch-first experience.
 
-## Upload to GitHub
+### New
+- 🎮 30-second **Catch My Hearts** love game
+- 💌 Special heart messages during the game
+- 🏆 Local high score saved in the browser
+- 🫶 Press-and-hold **Secret Hug**
+- 📱 Large touch targets and mobile-friendly controls
+- ✨ Existing random letters + starry sky remain
 
-Keep these together in the repository root:
+Upload all files to the same GitHub Pages repository.
 
-- index.html
-- style.css
-- script.js
-- config.js
-- assets/
-
-## Personalize
-
-Edit `config.js`.
-
-You can add unlimited permanent letters to the `letters` array. The Random Letter button can open any of them.
-
-The Starry Sky also creates many extra background stars automatically.
-
-## Photos
-
-Replace the "Your Photo" placeholders later with your own images.
-
-## Music
-
-Optional:
+Optional music:
 `assets/our-song.mp3`
 
-## GitHub Pages
-
-Settings → Pages → Deploy from a branch → main → / (root) → Save.
+Personalize:
+Edit `config.js`.

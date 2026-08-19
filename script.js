@@ -117,6 +117,94 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   $("galleryInfo").onclick=()=>{$("modalTitle").textContent="Our Gallery";$("modalText").textContent="Replace the 'Your Photo' placeholders with your favorite photos. ♡";$("modal").classList.add("show")};
   $("themeBtn").onclick=()=>document.body.classList.toggle("brighter");
+  // Playful love game: tap falling hearts for 30 seconds.
+  let gameTimer=null, spawnTimer=null, gameRunning=false, gameScore=0, timeLeft=30;
+  const board=$("loveGameBoard"), scoreEl=$("score"), timeEl=$("gameTime"), bestEl=$("bestScore"), gameMsg=$("gameMessage");
+  const bestKey="whenYouMissMeBest";
+  bestEl.textContent=localStorage.getItem(bestKey)||"0";
+
+  function startLoveGame(){
+    clearInterval(gameTimer); clearInterval(spawnTimer);
+    board.querySelectorAll(".falling-heart").forEach(x=>x.remove());
+    gameRunning=true; gameScore=0; timeLeft=30; scoreEl.textContent="0"; timeEl.textContent="30";
+    board.querySelector(".game-start")?.remove();
+    gameMsg.textContent="Catch as many as you can! 💗";
+    spawnHeart();
+    spawnTimer=setInterval(spawnHeart,650);
+    gameTimer=setInterval(()=>{
+      timeLeft--; timeEl.textContent=timeLeft;
+      if(timeLeft<=0) endLoveGame();
+    },1000);
+  }
+  function spawnHeart(){
+    if(!gameRunning)return;
+    const h=document.createElement("button");
+    h.className="falling-heart"+(Math.random()<.12?" gold":"");
+    h.type="button"; h.textContent=Math.random()<.18?"💌":"♥";
+    h.style.left=(4+Math.random()*88)+"%";
+    h.style.top=(8+Math.random()*78)+"%";
+    h.style.transform=`rotate(${Math.random()*30-15}deg)`;
+    h.onclick=()=>{
+      if(!gameRunning)return;
+      gameScore += h.textContent==="💌"?3:1;
+      scoreEl.textContent=gameScore;
+      h.textContent="♡";
+      h.style.pointerEvents="none";
+      h.style.transform="scale(1.8)";
+      h.style.opacity="0";
+      setTimeout(()=>h.remove(),120);
+      if(gameScore%5===0){
+        const messages=["That one's a hug from me. 🫂","Caught! I owe you a kiss. 💋","You found another little piece of my heart. 💗","Okay… you're getting dangerously good at this. 😘","One more reason to smile. ✨"];
+        gameMsg.textContent=messages[Math.floor(Math.random()*messages.length)];
+      }
+    };
+    board.appendChild(h);
+    setTimeout(()=>h.remove(),1400);
+  }
+  function endLoveGame(){
+    gameRunning=false; clearInterval(gameTimer); clearInterval(spawnTimer);
+    board.querySelectorAll(".falling-heart").forEach(x=>x.remove());
+    const old=Number(localStorage.getItem(bestKey)||0);
+    if(gameScore>old){localStorage.setItem(bestKey,gameScore);bestEl.textContent=gameScore}
+    gameMsg.textContent=`Time's up! You caught ${gameScore} heart${gameScore===1?"":"s"} — and every one was meant for you. ♡`;
+    const end=document.createElement("div");
+    end.className="game-start";
+    end.innerHTML=`<div class="game-heart">💗</div><h3>You caught ${gameScore} hearts!</h3><p>${gameScore>=15?"Okay, you're officially a love-game champion. 🏆":"I still have an infinite supply waiting for you. ♡"}</p><button class="pink-btn" id="againGame">Play Again ♥</button>`;
+    board.appendChild(end);
+    $("againGame").onclick=startLoveGame;
+  }
+  $("startGame").onclick=startLoveGame;
+  $("newGame").onclick=startLoveGame;
+
+  // Press-and-hold surprise.
+  let holdTimer=null, holdStart=0, holding=false;
+  const touchCard=$("touchCard"), touchBar=$("touchProgress"), touchText=$("touchText");
+  function beginHold(e){
+    e.preventDefault(); if(holding)return; holding=true; holdStart=Date.now();
+    holdTimer=setInterval(()=>{
+      const pct=Math.min(100,(Date.now()-holdStart)/25);
+      touchBar.style.width=pct+"%";touchText.textContent=Math.floor(pct)+"%";
+      if(pct>=100){finishHold()}
+    },25);
+  }
+  function finishHold(){
+    clearInterval(holdTimer);holdTimer=null;
+    if(!holding)return; holding=false;
+    touchBar.style.width="100%";touchText.textContent="100%";
+    $("modalTitle").textContent="You found a secret hug 🫂";
+    $("modalText").textContent="If I were there, I'd pull you close, hold you for a little longer than necessary, and quietly say: I love you.";
+    $("modal").classList.add("show");
+    setTimeout(()=>{touchBar.style.width="0%";touchText.textContent="0%"},900);
+  }
+  function cancelHold(){
+    if(!holding)return; clearInterval(holdTimer);holdTimer=null;holding=false;
+    touchBar.style.width="0%";touchText.textContent="0%";
+  }
+  touchCard.addEventListener("pointerdown",beginHold);
+  touchCard.addEventListener("pointerup",finishHold);
+  touchCard.addEventListener("pointerleave",cancelHold);
+  touchCard.addEventListener("pointercancel",cancelHold);
+
 });
 
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}

@@ -23,3 +23,33 @@ body.brighter:before{background:radial-gradient(circle at 55% 8%,#45335f99,trans
 @media(max-width:1050px){.sidebar{width:175px}.dashboard{margin-left:175px}.letters-grid,.reasons-grid,.gallery-grid,.extras-grid{grid-template-columns:repeat(4,1fr)}.hero-card{gap:30px;padding-left:4vw;padding-right:4vw}.music-layout{grid-template-columns:1fr 1fr}.song-message{grid-column:1/-1}}
 @media(max-width:760px){.topbar{height:58px;padding:7px 12px}.brand b{font-size:17px;line-height:14px}.brand small{font-size:7px}.top-btn{padding:7px 9px}.top-btn span{display:none}.sidebar{display:none}.dashboard{margin-left:0;padding-top:58px}.hero-card{min-height:650px;display:block;padding:80px 18px 40px}.hero-copy{margin:auto}.hero-copy h1{font-size:54px}.count-card{width:100%;max-width:340px;margin:40px auto 0}.panel{padding:24px 14px}.section-head{align-items:flex-start}.section-head h2{font-size:22px}.section-head p{font-size:8px}.outline-btn{font-size:8px;padding:7px 9px}.letters-grid,.reasons-grid,.gallery-grid,.extras-grid{display:grid;grid-template-columns:repeat(2,1fr);overflow:visible}.letter-card{min-height:125px}.constellation{height:390px}.gallery-grid{gap:7px}.photo-placeholder{height:135px}.music-layout{grid-template-columns:1fr}.song-message{grid-column:auto}.extras-grid button{min-height:110px}.secret-panel{display:block}.secret-box{margin:20px 0}.key-art{margin:15px}.closing{min-height:470px;padding:70px 20px;display:block;text-align:center}.moon{font-size:70px;margin-top:30px}}
 @media(max-width:390px){.hero-copy h1{font-size:48px}.big-count{font-size:27px}.letters-grid,.reasons-grid{grid-template-columns:1fr 1fr}.section-head{display:block}.section-head .outline-btn{margin-top:10px}.gallery-grid{grid-template-columns:1fr 1fr}}
+
+/* Playful + touchable love game */
+.game-panel{background:radial-gradient(circle at 50% 40%,#26133155,transparent 55%)}
+.game-wrap{max-width:900px;margin:auto;border:1px solid #ff76a52b;background:#090b1ad9;border-radius:20px;padding:14px;box-shadow:0 20px 70px #0006}
+.game-top{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.game-top>div{background:#ffffff06;border:1px solid #ffffff0b;border-radius:12px;padding:9px;text-align:center}
+.game-top span{display:block;color:#817b89;font-size:8px}
+.game-top b{display:block;color:#ff9cbd;font:700 22px "Cormorant Garamond",serif;margin-top:2px}
+.love-game-board{height:390px;position:relative;overflow:hidden;border-radius:15px;border:1px solid #ffffff0c;background:radial-gradient(circle at 50% 60%,#30163a,#0b0e20 65%);touch-action:manipulation}
+.game-start{position:absolute;inset:0;display:grid;place-items:center;align-content:center;text-align:center;padding:20px}
+.game-heart{font-size:65px;color:#ff83b0;text-shadow:0 0 35px #ff4d9d99;animation:floatHeart 1.6s ease-in-out infinite}
+.game-start h3{font:600 28px "Cormorant Garamond",serif;margin:8px 0}
+.game-start p{font:12px/1.5 Inter,sans-serif;color:#9d96a4}
+.falling-heart{position:absolute;border:0;background:none;color:#ff8eb6;font-size:32px;padding:12px;line-height:1;cursor:pointer;filter:drop-shadow(0 0 10px #ff5a9d99);animation:heartPop .25s ease-out}
+.falling-heart:hover{transform:scale(1.25)}
+.falling-heart.gold{color:#ffe0a1}
+@keyframes floatHeart{50%{transform:translateY(-10px) rotate(-4deg)}}
+@keyframes heartPop{from{transform:scale(.4);opacity:.2}to{transform:scale(1);opacity:1}}
+.game-message{text-align:center;color:#a89eaa;font:16px "Cormorant Garamond",serif;padding:13px 5px 2px;min-height:38px}
+.touch-panel{background:linear-gradient(180deg,#0b0d1b,#090a14)}
+.touch-card{max-width:600px;margin:10px auto 0;text-align:center;border:1px solid #ff80ae33;border-radius:20px;padding:28px;background:radial-gradient(circle at 50% 20%,#36182e,#0b0d1c);cursor:pointer;user-select:none;touch-action:none;transition:transform .15s,box-shadow .15s}
+.touch-card:active{transform:scale(.985);box-shadow:0 0 50px #ff4f9d22 inset}
+.touch-heart{font-size:58px;color:#ff80ad;text-shadow:0 0 30px #ff4f9d99;animation:beat 1s infinite}
+.touch-card h3{font:600 25px "Cormorant Garamond",serif;margin:5px 0}
+.touch-card p{font-size:10px;color:#928a98}
+.touch-progress{height:6px;background:#ffffff0a;border-radius:20px;overflow:hidden;margin:18px 0 8px}
+.touch-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,#e95a94,#ffb2cc);border-radius:20px}
+.touch-card>b{font-size:8px;color:#8e8491}
+@keyframes beat{50%{transform:scale(1.12)}}
+@media(max-width:760px){.love-game-board{height:430px}.game-top b{font-size:20px}.game-message{font-size:15px}.touch-card{padding:24px 15px}}
