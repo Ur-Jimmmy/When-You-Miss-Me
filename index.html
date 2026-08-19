@@ -436,7 +436,7 @@ function init(){
 
   // Countdown
   function countdown(){
-    const d=new Date(cfg.nextMeeting||"2026-08-21T18:00:00").getTime()-Date.now(), vals=d>0?[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60]:[0,0,0,0];
+    const d=new Date(cfg.nextMeeting||"2026-12-1T18:00:00").getTime()-Date.now(), vals=d>0?[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60]:[0,0,0,0];
     ["days","hours","minutes","seconds"].forEach((id,i)=>set(id,String(vals[i]).padStart(2,"0")));
   }
   countdown();setInterval(countdown,1000);
