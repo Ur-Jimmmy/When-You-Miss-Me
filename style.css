@@ -70,3 +70,19 @@ body.brighter:before{background:radial-gradient(circle at 55% 8%,#45335f99,trans
 .kiss-moon{font-size:55px;text-shadow:0 0 30px #ff5c9d66;animation:floatHeart 1.5s infinite}.kiss-card p{color:#928a99;font-size:10px}
 .kiss-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:700px;margin:25px auto}.kiss-options button{min-height:120px;border:1px solid #ffffff12;background:linear-gradient(145deg,#24162e,#0d1020);border-radius:14px;color:white;cursor:pointer}.kiss-options button:hover{transform:translateY(-5px);border-color:#ff7dae66}.kiss-options button:first-line{font-size:24px}.kiss-options b,.kiss-options small{display:block}.kiss-options b{font:600 16px "Cormorant Garamond",serif;margin-top:8px}.kiss-options small{font-size:8px;color:#837a89;margin-top:3px}.kiss-result{min-height:30px;color:#ff9abb;font:20px "Cormorant Garamond",serif}
 @media(max-width:760px){.game-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}.game-tab{white-space:nowrap}.quiz-options{grid-template-columns:1fr}.kiss-options{grid-template-columns:1fr}.quiz-card,.kiss-card{padding:22px 14px}.quiz-card h3,.kiss-card h3{font-size:27px}}
+
+/* Secret Door unlocked area */
+.unlocked-panel{border-top:1px solid #ff7aa82b;background:radial-gradient(circle at 50% 0,#3a173044,transparent 55%)}
+.unlock-banner{display:flex;align-items:center;gap:16px;max-width:900px;margin:0 auto 20px;padding:18px;border:1px solid #ff86ae2e;background:#ff5f9d08;border-radius:16px}
+.unlock-badge{font-size:38px;filter:drop-shadow(0 0 18px #ff639b)}
+.unlock-banner h2{font:600 27px "Cormorant Garamond",serif;margin:5px 0}.unlock-banner p{font-size:9px;color:#928996;margin:0}
+.secret-grid{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.secret-tile{min-height:125px;border:1px solid #ffffff12;border-radius:14px;background:linear-gradient(145deg,#21162d,#0c0e1c);color:#fff;padding:15px;cursor:pointer;transition:.18s;touch-action:manipulation}
+.secret-tile:hover{transform:translateY(-4px);border-color:#ff82ad55;box-shadow:0 10px 35px #ff4d9d18}.secret-tile:active{transform:scale(.97)}
+.secret-tile span{display:block;font-size:28px;margin-bottom:7px}.secret-tile b{display:block;font:600 15px "Cormorant Garamond",serif}.secret-tile small{display:block;color:#817987;font-size:8px;margin-top:5px}
+.wish-box{max-width:900px;margin:18px auto 0;text-align:center;padding:20px;border:1px solid #ffffff10;border-radius:16px;background:#ffffff04}
+.wish-box button{border:0;background:none;font-size:58px;cursor:pointer;filter:drop-shadow(0 0 22px #ffdca088);animation:moonFloat 2s ease-in-out infinite}
+.wish-box h3{font:600 22px "Cormorant Garamond",serif;margin:2px 0}.wish-box p{font:12px "Cormorant Garamond",serif;color:#aaa1ae}.wish-dots i{display:inline-block;width:5px;height:5px;border-radius:50%;background:#6d6874;margin:0 3px}.wish-dots i.on{background:#ff87ae;box-shadow:0 0 9px #ff5d9e}
+@keyframes moonFloat{50%{transform:translateY(-7px) rotate(-4deg)}}
+@media(max-width:760px){.unlock-banner{align-items:flex-start}.secret-grid{grid-template-columns:1fr 1fr}.secret-tile{min-height:130px}}
+@media(max-width:390px){.secret-grid{grid-template-columns:1fr}}
