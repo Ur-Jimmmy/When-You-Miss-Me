@@ -1,9 +1,11 @@
-# For Jiya, From Jimmy — V8
+# For Jiya, From Jimmy — V9
 
-This is the standalone version. `index.html` contains the configuration and JavaScript inline, so the Secret Door does not depend on a separate config.js/script.js file or browser cache.
+Fixed the Secret Room/index styling issue.
 
-Secret word: `love`
+The Secret Room CSS is now embedded directly inside `index.html`, so it will render correctly even if GitHub Pages is serving an older cached `style.css`.
 
-Upload `index.html` and `style.css` to the repository and replace the old files. You do not need config.js or script.js for this version.
+Also added `style.css?v=9` cache-busting.
 
-After entering `love`, the hidden room appears automatically with six surprises and a three-tap moon wish.
+Password: `love`
+
+Replace **index.html** and **style.css** in GitHub. Keep `script.js`, `config.js`, and `assets/` from the previous version.
