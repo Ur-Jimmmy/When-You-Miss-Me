@@ -1,26 +1,41 @@
-# When You Miss Me ❤️
+# When You Miss Me — Version 2 ❤️
 
-A private romantic one-page website made as a gift.
+A cinematic, mobile-first romantic website for GitHub Pages.
 
-## GitHub Pages setup
+## Files
 
-1. Create a new GitHub repository.
-2. Upload `index.html`, `style.css`, `script.js`, and the `assets` folder.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**.
-5. Select your main branch and `/ (root)`.
-6. Save.
-7. GitHub will give you your website URL.
+- `index.html` — website structure
+- `style.css` — design and animations
+- `script.js` — interactions
+- `config.js` — **the only file you need to personalize**
+- `assets/` — put your song/photos here
 
-## Personalize it
+## Personalize
 
-Open `script.js` and change:
+Open `config.js` and change:
 
-- `NEXT_MEETING` — your next meeting date/time.
-- `SECRET_WORD` — your private secret word.
-- `letters` — your personal letters.
-- `reasons` — your real reasons for loving her.
+- `name`
+- `introLine`
+- `nextMeeting`
+- `secretWord`
+- `finalMessage`
+- `reasons`
+- `letters`
+- `timeline`
+- `memories`
 
-For music, put `our-song.mp3` inside `assets/`, then follow the comment in `script.js`.
+## Add your song
 
-For photos, you can later add a memory gallery to `index.html`.
+Put your MP3 in:
+
+`assets/our-song.mp3`
+
+The Music button will play it.
+
+## GitHub Pages
+
+Create a repository, upload all files/folders, then:
+
+**Settings → Pages → Deploy from a branch → main → / (root) → Save**
+
+Your site will then get a GitHub Pages address.
