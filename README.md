@@ -1,18 +1,13 @@
-# For Jiya, From Jimmy — V9
+# For Jiya, From Jimmy — V11 Touch Fix ❤️
 
-Fixed the Secret Room/index styling issue.
+This version fixes the main tap issue in V10: the page had an inline `CONFIG`, while the JavaScript only looked for `window.CONFIG`, leaving the letter list empty.
 
-The Secret Room CSS is now embedded directly inside `index.html`, so it will render correctly even if GitHub Pages is serving an older cached `style.css`.
+### Fixed
+- 💗 I Miss You now always opens a message.
+- 💌 Love letters open correctly.
+- ✦ Memory stars open correctly.
+- 🫂 Extra message boxes open correctly.
+- 🔁 Relatable follow-up button works and gives a new matching interaction.
+- Existing games and Secret Room are retained.
 
-Also added `style.css?v=9` cache-busting.
-
-Password: `love`
-
-Replace **index.html** and **style.css** in GitHub. Keep `script.js`, `config.js`, and `assets/` from the previous version.
-
-### V10-style message variety
-Message cards now randomly choose from larger matching pools for moods like missing, sad, hugs, sleep, overthinking, reassurance, happy, rain, bad days, courage, insecurity, future, and midnight. Every opening can show a different note.
-
-
-### V10 — Relatable Tap Moments
-Every message/letter now gets a matching mini-interaction. Jiya can tap the contextual button for a second, more personal response.
+Upload/replace `index.html`, `script.js`, and `style.css`. Keep `assets/`.

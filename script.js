@@ -2,14 +2,14 @@
 "use strict";
 function init(){
   const $=id=>document.getElementById(id);
-  const cfg=window.CONFIG||{};
+  const cfg=(typeof CONFIG!=="undefined"?CONFIG:(window.CONFIG||{}));
   const letters=cfg.letters||[];
   const reasons=cfg.reasons||[];
   const memories=cfg.memories||[];
   const name=cfg.name||"Jiya";
 
   const set=(id,v)=>{const e=$(id);if(e)e.textContent=v};
-  const pools=cfg.messagePools||{};
+  const pools=cfg.messagePools||window.CONFIG?.messagePools||{};
   function pickPool(kind){
     const a=pools[kind]||pools.generic||[];
     return a.length?a[Math.floor(Math.random()*a.length)]:"";
