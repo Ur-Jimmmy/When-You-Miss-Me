@@ -12,3 +12,7 @@ Replace **index.html** and **style.css** in GitHub. Keep `script.js`, `config.js
 
 ### V10-style message variety
 Message cards now randomly choose from larger matching pools for moods like missing, sad, hugs, sleep, overthinking, reassurance, happy, rain, bad days, courage, insecurity, future, and midnight. Every opening can show a different note.
+
+
+### V10 — Relatable Tap Moments
+Every message/letter now gets a matching mini-interaction. Jiya can tap the contextual button for a second, more personal response.

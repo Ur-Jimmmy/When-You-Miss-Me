@@ -14,6 +14,79 @@ function init(){
     const a=pools[kind]||pools.generic||[];
     return a.length?a[Math.floor(Math.random()*a.length)]:"";
   }
+  const relatablePools={
+    miss:[
+      ["Do this for me: put your hand on your heart for five seconds. That tiny heartbeat is Jimmy's reminder that you're still connected, even when I'm not beside you.","I did it ♡","Okay… now imagine Jimmy saying: 'Come here, Jiya. No distance today. Just us.' 🫂"],
+      ["If this were a real chat, this is where Jimmy would probably send a stupid selfie just to make you smile.","Where's my selfie? 😭","Fine. Imagine the worst selfie ever: messy hair, sleepy eyes, and one caption — 'I miss you too, idiot. ❤️'"],
+      ["Don't just read this one. Look around your room and pick one thing that reminds you of me.","I found one ♡","Keep it close for a moment. Now you're carrying a tiny piece of Jimmy with you."],
+      ["Missing someone usually arrives in little moments — a song, a notification, an empty side of the bed. Let this moment be one where you smile instead.","Make me smile 😌","Mission accepted: Jimmy has officially ordered one smile from Jiya. No excuses. 😘"]
+    ],
+    sad:[
+      ["Don't solve your whole life tonight. Drink some water, breathe slowly, and give yourself permission to have a softer minute.","I'm breathing ♡","Good. That's enough for this moment. Jimmy is proud of you for making it through today."],
+      ["If Jimmy were beside you, he wouldn't give you a lecture. He'd sit quietly, bring you something you like, and stay.","Stay with me","I'm staying right here in this little page. 🫂"],
+      ["You don't have to hide the messy version of yourself from someone who loves you.","I needed that","Then keep this sentence: you are still lovable on your worst days. ❤️"]
+    ],
+    hug:[
+      ["Put both arms around yourself for three seconds. Yes, seriously. I'm borrowing your arms until mine can be there.","Hug done 🫂","Now hold it one second longer. That's Jimmy's extra hug."],
+      ["Imagine Jimmy walking up without saying anything and opening his arms. No explanation needed.","Come here ♡","Already there. Head on my shoulder. Breathe."],
+      ["This is your emergency hug. Side effects may include smiling and suddenly missing Jimmy more. 😌","Risk accepted","Then come closer. Virtual hug deployed. 🫂❤️"]
+    ],
+    sleep:[
+      ["Turn your brightness down, put the phone beside you, and imagine Jimmy whispering goodnight instead of reading another message.","Goodnight Jimmy 🌙","Goodnight, Jiya. Sleep peacefully. I'll be in the corner of your dreams, probably stealing the blanket."],
+      ["One last thought before sleep: today ended, but our story didn't.","One last thought ♡","You are loved. Now close your eyes. That's all you need tonight."]
+    ],
+    overthink:[
+      ["Ask yourself: 'Will this still matter next week?' If not, let tonight be lighter.","A little lighter","Good. One thought down. Now give your brain permission to rest."],
+      ["Name three things you can see, two things you can hear, and one thing that makes you feel safe.","Done","See? You came back to the present. Jimmy is proud of you. ♡"]
+    ],
+    reassurance:[
+      ["No guessing game here. If you need reassurance, read this slowly: Jimmy chooses Jiya. Again. And again.","Say it again","Jimmy chooses Jiya. ♡"],
+      ["You don't have to earn love by being perfect.","I believe you","Good. Then let your shoulders relax a little. You are safe to be yourself."]
+    ],
+    happy:[
+      ["Stop scrolling for a second and smile properly. Jimmy wants the real one, not the polite one. 😌","Okay, smiling","There she is. That's my favorite version of you. ❤️"],
+      ["Tell me one tiny thing that made you happy today. Keep it like a secret between us.","I have one ♡","Keep that little happiness. Jimmy is adding an imaginary kiss to it. 💋"]
+    ],
+    smile:[
+      ["Challenge: smile without showing your teeth. Yes, I'm being annoying on purpose.","I smiled 😭","Victory! Jimmy 1 — Jiya's serious face 0. 😂❤️"],
+      ["Imagine Jimmy trying way too hard to make you laugh right now.","Try harder","Okay: I love you more than Wi‑Fi loves connecting at the worst possible time. 😭📶❤️"]
+    ],
+    love:[
+      ["Don't just ask why. Ask yourself how it feels when your name appears on my screen. That's the answer.","It feels nice ♡","Then keep that feeling. Jimmy likes knowing his name can make Jiya smile."],
+      ["Love isn't only big promises. Sometimes it's remembering the tiny things about someone.","Like what?","Like the way Jiya deserves to be reminded that she matters — even on ordinary Tuesdays."]
+    ],
+    rain:[
+      ["Listen to the rain for ten seconds. Pretend Jimmy is sitting beside you, saying nothing, just sharing the quiet.","I hear it 🌧️","Then stay there a little longer. Some moments don't need words."],
+      ["Rainy-day rule: blanket, warm drink, music, and absolutely no unnecessary overthinking.","Deal ♡","Good. Jimmy officially approves this plan."]
+    ],
+    bad:[
+      ["Today doesn't need to be productive. It just needs to end. Tomorrow can be better.","I'll try","That's enough. Try gently, not perfectly."],
+      ["If today hurt, don't turn that pain into a story about your worth.","Remember this","Your bad day is not a bad you. ❤️"]
+    ],
+    courage:[
+      ["Do the next tiny thing, not the whole mountain. One step is still progress.","One step ♡","Exactly. Jimmy is cheering for that one step."],
+      ["You have already survived days you once thought you couldn't.","I forgot that","Then let Jimmy remind you: you're stronger than your tired mind says."]
+    ],
+    insecure:[
+      ["Look at yourself for a second and name one thing you genuinely like. No jokes, no excuses.","I found one","Keep it. Jimmy probably likes that thing too. ♡"],
+      ["You don't have to compare your behind-the-scenes to somebody else's highlight reel.","Okay…","Good. Come back to yourself. That's where Jimmy wants you."]
+    ],
+    future:[
+      ["Close your eyes and imagine one completely ordinary future day with us. No grand movie scene — just us being us.","I imagined it","Keep that picture. Sometimes the ordinary dreams are the most beautiful ones."],
+      ["Pick one tiny thing you want us to do someday.","I picked one ♡","Deal. Jimmy is mentally adding it to our someday list."]
+    ],
+    generic:[
+      ["Don't rush away yet. Stay here for one extra second and let this little message be yours.","I'm here ♡","Then that's enough. Jimmy left this corner of the internet for exactly that moment."],
+      ["If this message reached you at the right time, take it as your tiny sign to smile.","I smiled","Then Jimmy's job here is done… until you miss me again. ❤️"]
+    ]
+  };
+  let activeRelatable=null;
+  function showRelatable(kind){
+    const box=$("modalRelatable"),line=$("relatableLine"),btn=$("relatableBtn"); if(!box||!line||!btn)return;
+    const pool=relatablePools[kind]||relatablePools.generic; activeRelatable=pool[Math.floor(Math.random()*pool.length)];
+    line.textContent=activeRelatable[0]; btn.textContent=activeRelatable[1]; box.hidden=false;
+    btn.onclick=()=>{line.textContent=activeRelatable[2];btn.textContent="One more little thing ♡";btn.onclick=()=>showRelatable(kind)};
+  }
   function letterKind(title){
     const t=String(title).toLowerCase();
     if(/miss/.test(t))return "miss";
@@ -48,6 +121,7 @@ function init(){
     set("modalTitle",letters[i][0]);
     const extra=pickPool(letterKind(letters[i][0]));
     set("modalText",extra||letters[i][1]);
+    showRelatable(letterKind(letters[i][0]));
     $("modal").classList.add("show");
   }
   function randomLetter(){
@@ -68,11 +142,11 @@ function init(){
     memories.forEach((m,i)=>{
       const b=document.createElement("button");b.className="memory-star";b.textContent="✦";b.type="button";
       b.style.left=m[2]+"%";b.style.top=m[3]+"%";b.style.animationDelay=(i*.12)+"s";
-      b.onclick=()=>{set("modalTitle",m[0]);set("modalText",pickPool(letterKind(m[0]))||m[1]);$("modal").classList.add("show")};constellation.appendChild(b);
+      b.onclick=()=>{set("modalTitle",m[0]);set("modalText",pickPool(letterKind(m[0]))||m[1]);showRelatable(letterKind(m[0]));$("modal").classList.add("show")};constellation.appendChild(b);
     });
     for(let i=0;i<100;i++){const s=document.createElement("span");s.className="tiny-star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";s.style.animationDelay=Math.random()*3+"s";constellation.appendChild(s)}
   }
-  $("allMemories")?.addEventListener("click",()=>{const m=memories[Math.floor(Math.random()*memories.length)];if(m){set("modalTitle",m[0]);set("modalText",pickPool(letterKind(m[0]))||m[1]);$("modal").classList.add("show")}});
+  $("allMemories")?.addEventListener("click",()=>{const m=memories[Math.floor(Math.random()*memories.length)];if(m){set("modalTitle",m[0]);set("modalText",pickPool(letterKind(m[0]))||m[1]);showRelatable(letterKind(m[0]));$("modal").classList.add("show")}});
 
   function renderReasons(){
     if(!$("reasonsGrid"))return;
@@ -95,7 +169,7 @@ function init(){
   };
   document.querySelectorAll("[data-extra]").forEach(b=>b.onclick=()=>{
     const x=extra[b.dataset.extra];
-    if(x){set("modalTitle",x[0]);set("modalText",pickPool(x[1]));$("modal").classList.add("show")}
+    if(x){set("modalTitle",x[0]);set("modalText",pickPool(x[1]));showRelatable(x[1]);$("modal").classList.add("show")}
   });
   $("hugSide")?.addEventListener("click",()=>document.querySelector('[data-extra="hug"]')?.click());
 
@@ -127,7 +201,7 @@ function init(){
   };
   document.querySelectorAll("[data-hidden]").forEach(b=>b.addEventListener("click",()=>{
     const x=hidden[b.dataset.hidden]; if(!x)return;
-    set("modalTitle",x[0]);set("modalText",x[1]+"\n\n"+pickPool("generic"));$("modal").classList.add("show");
+    set("modalTitle",x[0]);set("modalText",x[1]+"\n\n"+pickPool("generic"));showRelatable("generic");$("modal").classList.add("show");
   }));
   let wishCount=0;
   $("secretMoon")?.addEventListener("click",()=>{
